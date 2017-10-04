@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: discogs-api-consumption
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Taiwo
+Implementation-Vendor-Id: com.discogsApi
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/discogs-api-
+ consumption/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
