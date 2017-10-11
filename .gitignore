@@ -1,4 +1,5 @@
 *#
+*.class
 *.iml
 *.ipr
 *.iws
@@ -33,4 +34,5 @@ manifest.yml
 overridedb.*
 settings.xml
 target
+/target
 transaction-logs
