@@ -1,0 +1,21 @@
+<div>
+	<svg width="500" height="500">
+		<g class="relationship" ng-repeat="relationship in data.relationships">
+			<line 
+			stroke-width="1"
+			ng-attr-x1="{{relationship.source.x}}" 
+			ng-attr-y1="{{relationship.source.y}}" 
+			ng-attr-x2="{{relationship.target.x}}"
+			ng-attr-y2="{{relationship.target.y}}"></line>
+		</g>
+		<g class="node" ng-class="entity.type" ng-repeat="entity in data.entities" ng-attr-transform="translate({{entity.x}}, {{entity.y}})">
+			<title>{{entity.label}}</title>
+			<circle r="10"></circle>
+		</g>
+	</svg>
+	<div>
+		<pre>
+			{{data | json}}
+		</pre>
+	</div>
+</div>

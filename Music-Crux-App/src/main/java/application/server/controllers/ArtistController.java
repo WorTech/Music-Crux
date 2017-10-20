@@ -37,12 +37,10 @@ public class ArtistController {
 		entities.add(entity2);
 		entities.add(entity3);
 		
-		Relationship r1 = new Relationship(RelationshipType.FEATURED, 123, 456);
-		Relationship r2 = new Relationship(RelationshipType.MEMBER, 456, 123);
-		Relationship r3 = new Relationship(RelationshipType.FEATURED, 789,123);
+		Relationship r1 = new Relationship(RelationshipType.FEATURED, 0, 1);
+		Relationship r2 = new Relationship(RelationshipType.FEATURED, 2,1);
 		relationships.add(r1);
 		relationships.add(r2);
-		relationships.add(r3);
 		
 		Molecule molecule = new Molecule(entities, relationships);
 		return new ResponseEntity<Molecule>(molecule, HttpStatus.OK);

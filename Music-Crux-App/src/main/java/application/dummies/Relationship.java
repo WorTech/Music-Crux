@@ -18,19 +18,19 @@ public class Relationship {
 		this.type = type;
 	}
 
-	public int getSourceEntityIndex() {
+	public int getSource() {
 		return sourceEntityIndex;
 	}
 
-	public void setSourceEntityIndex(int sourceEntityIndex) {
+	public void setSource(int sourceEntityIndex) {
 		this.sourceEntityIndex = sourceEntityIndex;
 	}
 
-	public int getTargetEntityIndex() {
+	public int getTarget() {
 		return targetEntityIndex;
 	}
 
-	public void setTargetEntityIndex(int targetEntityIndex) {
+	public void setTarget(int targetEntityIndex) {
 		this.targetEntityIndex = targetEntityIndex;
 	}
 	

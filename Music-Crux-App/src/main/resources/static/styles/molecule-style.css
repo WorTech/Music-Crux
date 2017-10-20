@@ -1,0 +1,17 @@
+molecule .node circle {
+	stroke: #fff;
+	stroke-width: 1.5px;
+}
+
+molecule .node.ARTIST circle {
+	fill: red;
+}
+
+molecule .node.BAND circle {
+	fill: blue;
+}
+
+molecule .relationship line {
+	stroke: #999;
+	stroke-opacity: 0.6;
+}
