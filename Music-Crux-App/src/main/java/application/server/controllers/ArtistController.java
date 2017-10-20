@@ -23,7 +23,6 @@ import application.dummies.Relationship;
 import application.dummies.RelationshipType;
 
 @Controller
-
 @RestController
 @RequestMapping("/api")
 public class ArtistController {

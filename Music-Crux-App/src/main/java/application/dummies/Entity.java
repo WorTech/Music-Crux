@@ -8,8 +8,6 @@ public class Entity {
 	//artist name, band name, etc
 	private String label;
 
-	
-	
 	public Entity(int id, EntityType type, String label) {
 		this.id = id;
 		this.type = type;
