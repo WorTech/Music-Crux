@@ -1,4 +1,4 @@
-package application.dummies;
+package application.api.models;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class Molecule {
 	public Molecule() {
 	}
 	
-	public Molecule(List<Entity> entities, List<Relationship> relationships) {
+	public Molecule(List<Entity>entities, List<Relationship> relationships) {
 		this.entities = entities;
 		this.relationships = relationships;
 	}

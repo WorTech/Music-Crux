@@ -1,4 +1,4 @@
-package application.dummies;
+package application.api.models;
 public class Entity {
 	//feel free to change to int or long if that fits your model better
 	private int id;
