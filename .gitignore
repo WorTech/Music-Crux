@@ -1,9 +1,10 @@
-*#
 *.class
+*.jar
+/target/
+*#
 *.iml
 *.ipr
 *.iws
-*.jar
 *.sw?
 *~
 .#*
@@ -14,6 +15,7 @@
 .gradle
 .idea
 .metadata
+.mvn
 .project
 .recommenders
 .settings
@@ -31,8 +33,8 @@ dump.rdb
 interpolated*.xml
 lib/
 manifest.yml
+mvnw
 overridedb.*
 settings.xml
 target
-/target
 transaction-logs
