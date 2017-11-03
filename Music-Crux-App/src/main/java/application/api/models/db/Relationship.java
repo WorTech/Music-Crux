@@ -4,8 +4,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import application.api.models.db.Entity;
-
 @Document
 public class Relationship {
 	@Indexed
