@@ -14,6 +14,12 @@ public class Relationship {
 
 	public Relationship() {
 	}
+	
+	public Relationship(RelationshipType type, Entity targetEntity, Entity sourceEntity) {
+		this.type = type;
+		this.targetEntity = targetEntity;
+		this.sourceEntity = sourceEntity;
+	}
 
 	public Entity getTargetEntity() {
 		return targetEntity;

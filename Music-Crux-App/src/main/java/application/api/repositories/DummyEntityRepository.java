@@ -1,5 +1,6 @@
 package application.api.repositories;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,9 +21,9 @@ public class DummyEntityRepository {
 
 	static {
 		entities = new ArrayList<Entity>();
-		entities.add(new Entity(123, EntityType.ARTIST, "ARTIST NUMBER 1"));
-		entities.add(new Entity(456, EntityType.BAND, "BAND NUMBER 1"));
-		entities.add(new Entity(789, EntityType.ARTIST, "ARTIST NUMBER 2"));
+		entities.add(new Entity(new BigInteger("123"), EntityType.ARTIST, "ARTIST NUMBER 1"));
+		entities.add(new Entity(new BigInteger("456"), EntityType.BAND, "BAND NUMBER 1"));
+		entities.add(new Entity(new BigInteger("789"), EntityType.ARTIST, "ARTIST NUMBER 2"));
 	}
 
 	public Entity getEntityById(int id) {
