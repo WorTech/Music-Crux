@@ -6,16 +6,24 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import application.api.models.Molecule;
 import application.api.models.db.Entity;
-import application.api.repositories.DummyEntityRepository;
+import application.api.repositories.EntityRepository;
 
 @Service
 public class EntityService{
 
-	@Autowired
-	private DummyEntityRepository dummyEntityRepository; // This is our DAO (Data access object)
 
-	public List<Entity> getEntities() {
-		return dummyEntityRepository.getEntities();
+	@Autowired 
+	EntityRepository entityRepository;
+
+	public Molecule createMoleculeFromEntity(Entity entity, Integer depth) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Molecule createMoleculeFromEntities(List<Entity> entities, Integer depth) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
