@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import application.api.models.Entity;
 import application.api.models.Molecule;
-import application.api.models.Relationship;
+import application.api.models.db.Entity;
+import application.api.models.db.Relationship;
 
 @Repository
 public class DummyMoleculesRepository {

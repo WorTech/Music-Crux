@@ -1,4 +1,4 @@
-package application.api.models;
+package application.api.models.db;
 public class Relationship {
 	private RelationshipType type;
 	private int sourceEntityIndex;

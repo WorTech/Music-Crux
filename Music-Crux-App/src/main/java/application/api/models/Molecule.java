@@ -2,6 +2,9 @@ package application.api.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.api.models.db.Entity;
+import application.api.models.db.Relationship;
+
 public class Molecule {
 	private List<Entity> entities = new ArrayList<>();
 	private List<Relationship> relationships = new ArrayList<>();

@@ -1,4 +1,4 @@
-package application.api.models;
+package application.api.models.db;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

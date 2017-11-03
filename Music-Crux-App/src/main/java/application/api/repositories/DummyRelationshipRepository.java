@@ -8,8 +8,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import application.api.models.Relationship;
-import application.api.models.RelationshipType;
+import application.api.models.db.Relationship;
+import application.api.models.db.RelationshipType;
 
 @Repository
 public class DummyRelationshipRepository {
