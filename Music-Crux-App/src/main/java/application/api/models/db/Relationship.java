@@ -1,13 +1,36 @@
 package application.api.models.db;
+
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import application.api.models.db.Entity;
+
+@Document
 public class Relationship {
+	@Indexed
 	private RelationshipType type;
-	private int sourceEntityIndex;
-	private int targetEntityIndex;
-	
-	public Relationship(RelationshipType type, int sourceEntityIndex, int targetEntityIndex) {
-		this.type = type;
-		this.sourceEntityIndex = sourceEntityIndex;
-		this.targetEntityIndex = targetEntityIndex;
+
+	@DBRef
+	private Entity targetEntity, sourceEntity;
+
+	public Relationship() {
+	}
+
+	public Entity getTargetEntity() {
+		return targetEntity;
+	}
+
+	public void setTargetEntity(Entity targetEntity) {
+		this.targetEntity = targetEntity;
+	}
+
+	public Entity getSourceEntity() {
+		return sourceEntity;
+	}
+
+	public void setSourceEntity(Entity sourceEntity) {
+		this.sourceEntity = sourceEntity;
 	}
 
 	public RelationshipType getType() {
@@ -18,22 +41,4 @@ public class Relationship {
 		this.type = type;
 	}
 
-	public int getSource() {
-		return sourceEntityIndex;
-	}
-
-	public void setSource(int sourceEntityIndex) {
-		this.sourceEntityIndex = sourceEntityIndex;
-	}
-
-	public int getTarget() {
-		return targetEntityIndex;
-	}
-
-	public void setTarget(int targetEntityIndex) {
-		this.targetEntityIndex = targetEntityIndex;
-	}
-	
-	
-	
 }

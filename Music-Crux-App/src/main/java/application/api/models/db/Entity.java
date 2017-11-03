@@ -1,24 +1,36 @@
 package application.api.models.db;
-public class Entity {
-	//feel free to change to int or long if that fits your model better
-	private int id;
-	
-	private EntityType type;
-	
-	//artist name, band name, etc
-	private String label;
 
-	public Entity(int id, EntityType type, String label) {
+import java.math.BigInteger;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Entity {
+
+	@Id
+	private BigInteger id;
+	@Indexed
+	private String label; // artist name, band name, etc
+	@Indexed
+	private EntityType type;
+
+	public Entity() {
+
+	}
+
+	public Entity(BigInteger id, EntityType type, String label) {
 		this.id = id;
 		this.type = type;
 		this.label = label;
 	}
 
-	public int getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 
@@ -37,4 +49,10 @@ public class Entity {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+	@Override
+	public String toString() {
+		return "Entity [id=" + id + ", label=" + label + ", type=" + type + "]";
+	}
+
 }
