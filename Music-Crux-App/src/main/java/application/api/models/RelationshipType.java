@@ -1,4 +1,4 @@
-package application.api.models.db;
+package application.api.models;
 public enum RelationshipType {
 	FEATURED,
 	MEMBER
