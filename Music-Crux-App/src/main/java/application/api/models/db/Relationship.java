@@ -12,31 +12,25 @@ public class Relationship {
 	private RelationshipType type;
 
 	@DBRef
-	private Entity targetEntity, sourceEntity;
+	private Entity entity1, entity2;
 
 	public Relationship() {
 	}
-	
-	public Relationship(RelationshipType type, Entity targetEntity, Entity sourceEntity) {
-		this.type = type;
-		this.targetEntity = targetEntity;
-		this.sourceEntity = sourceEntity;
+
+	public Entity getEntity1() {
+		return entity1;
 	}
 
-	public Entity getTargetEntity() {
-		return targetEntity;
+	public void setEntity1(Entity entity1) {
+		this.entity1 = entity1;
 	}
 
-	public void setTargetEntity(Entity targetEntity) {
-		this.targetEntity = targetEntity;
+	public Entity getEntity2() {
+		return entity2;
 	}
 
-	public Entity getSourceEntity() {
-		return sourceEntity;
-	}
-
-	public void setSourceEntity(Entity sourceEntity) {
-		this.sourceEntity = sourceEntity;
+	public void setEntity2(Entity entity2) {
+		this.entity2 = entity2;
 	}
 
 	public RelationshipType getType() {

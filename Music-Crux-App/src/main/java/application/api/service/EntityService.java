@@ -22,6 +22,9 @@ public class EntityService {
 	@Autowired
 	RelationshipRepository relationshipRepository;
 
+	// TODO: Update this function to reflect the changes to the Relationship models
+	//
+	
 	/**
 	 * Creates a molecule from the provided labels.
 	 * The Molecule consists of the entities and relationships corresponding to the labels
