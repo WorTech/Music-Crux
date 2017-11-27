@@ -30,7 +30,23 @@ public class Molecule {
 	public void setRelationships(List<Relationship> relationships) {
 		this.relationships = relationships;
 	}
-
+	
+	public void addEntity(Entity entity) {
+		entities.add(entity);
+	}
+	
+	public void addRelationship(Relationship relationship) {
+		relationships.add(relationship);
+	}
+	
+	public void addEntities(List<Entity> entities) {
+		this.entities.addAll(entities);
+	}
+	
+	public void addRelationships(List<Relationship> relationships) {
+		this.relationships.addAll(relationships);
+	}
+	
 	public static Molecule join(Molecule molA, Molecule molB) {
 
 		List<Entity> joinedEntities = new ArrayList<>();
