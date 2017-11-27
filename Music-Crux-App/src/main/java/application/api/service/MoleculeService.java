@@ -16,13 +16,25 @@ import application.api.repositories.RelationshipRepository;
 @Service
 public class MoleculeService {
 
-	/*@Autowired
+	@Autowired
 	EntityRepository entityRepository;
 
 	@Autowired
 	RelationshipRepository relationshipRepository;
-
-	public MoleculeUI getMoleculeFor(String name, int limit) {
+	
+	public MoleculeUI createMoleculeFor(String entityId, int depth) {
+		
+		Entity entity = entityRepository.findOne(entityId);
+		List<Relationship> relationships = relationshipRepository.findByEntity(entityId);
+		
+		List<Entity> entities = new ArrayList<>();
+		entities.add(entity);
+		Molecule molecule = new Molecule(entities, relationships);
+		
+		return MoleculeUI.dbModelToUiModel(molecule);
+	}
+	
+	/*public MoleculeUI getMoleculeFor(String name, int limit) {
 
 		Molecule molecule = _getMoleculeFor(name, limit);
 

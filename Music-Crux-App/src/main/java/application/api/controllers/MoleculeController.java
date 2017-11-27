@@ -15,14 +15,14 @@ import application.api.service.MoleculeService;
 @RequestMapping("/api")
 public class MoleculeController {
 	
-	/*@Autowired
+	@Autowired
 	private MoleculeService moleculeService;
 	
 	@RequestMapping(value = "/molecule", method = RequestMethod.GET)
-	public ResponseEntity<MoleculeUI> getMolecules(@RequestParam("name") String label, @RequestParam("limit") int limit ) {
+	public ResponseEntity<MoleculeUI> getMolecules(@RequestParam("focus") String entityId, @RequestParam("depth") int depth ) {
 		
-		MoleculeUI molecule = moleculeService.getMoleculeFor(label, limit);
+		MoleculeUI molecule = moleculeService.createMoleculeFor(entityId, depth);
 		
 		return new ResponseEntity<MoleculeUI>(molecule, HttpStatus.OK);
-	}*/
+	}
 }
