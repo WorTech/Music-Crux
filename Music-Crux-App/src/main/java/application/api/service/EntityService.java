@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import application.api.models.db.Entity;
-import application.api.models.db.Molecule;
-import application.api.models.db.Relationship;
-import application.api.models.ui.MoleculeUI;
+import application.api.models.ui.EntityUI;
 import application.api.repositories.EntityRepository;
 import application.api.repositories.RelationshipRepository;
 
@@ -31,30 +30,9 @@ public class EntityService {
 	 * @param entities
 	 * @return Molecule
 	 */
-	public MoleculeUI createMoleculeFromLabels(List<String> labels) {
-		
-		List<Molecule> molecules = new ArrayList<>();
-		
-		for (String label : labels) {
-			
-			Entity sourceEntity = entityRepository.findByLabel(label);
-			if (sourceEntity == null) {
-				continue;
-			}
-			
-			List<Relationship> relationships = relationshipRepository.findBySourceEntity(sourceEntity);
-			List<Entity> entities = new ArrayList<>();
-					
-			for (Relationship relationship : relationships) {
-				entities.add(relationship.getTargetEntity());
-			}
-			
-			entities.add(sourceEntity); // The source entity should be added as well;
-			
-			molecules.add(new Molecule(entities, relationships));
-		}
-		
-		
-		return MoleculeUI.dbModelToUiModel(Molecule.join(molecules));
+	public List<EntityUI> getEntitySearchResults(String name, int limit){
+		List<Entity> searchResults = new ArrayList<>();
+		searchResults = entityRepository.findByLabelContaining(name, new PageRequest(0,limit));
+		return EntityUI.dbModelToUiModel(searchResults);
 	}
 }

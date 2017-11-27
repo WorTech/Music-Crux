@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.api.models.db.Entity;
-import application.api.models.db.Relationship;
 import application.api.models.ui.RelationshipUI;
-import application.api.repositories.EntityRepository;
-import application.api.repositories.RelationshipRepository;
 import application.api.service.RelationshipService;
 
 @RestController
@@ -22,6 +18,7 @@ import application.api.service.RelationshipService;
 public class RelationshipController {
 	
 	@Autowired
+
 	RelationshipService relationshipService;
 	
 	@RequestMapping(value = "/relationship", method = RequestMethod.GET)
@@ -33,3 +30,4 @@ public class RelationshipController {
 		return new ResponseEntity<List<RelationshipUI>>(relationships, status);
 	}
 }
+
