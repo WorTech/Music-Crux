@@ -15,7 +15,7 @@ import application.api.service.MoleculeService;
 @RequestMapping("/api")
 public class MoleculeController {
 	
-	@Autowired
+	/*@Autowired
 	private MoleculeService moleculeService;
 	
 	@RequestMapping(value = "/molecule", method = RequestMethod.GET)
@@ -24,5 +24,5 @@ public class MoleculeController {
 		MoleculeUI molecule = moleculeService.getMoleculeFor(label, limit);
 		
 		return new ResponseEntity<MoleculeUI>(molecule, HttpStatus.OK);
-	}
+	}*/
 }

@@ -16,7 +16,7 @@ import application.api.repositories.RelationshipRepository;
 @Service
 public class MoleculeService {
 
-	@Autowired
+	/*@Autowired
 	EntityRepository entityRepository;
 
 	@Autowired
@@ -65,6 +65,6 @@ public class MoleculeService {
 
 		return new Molecule(entities, relationships);
 
-	}
+	}*/
 
 }
