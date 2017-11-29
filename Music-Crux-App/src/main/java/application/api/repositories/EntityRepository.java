@@ -10,5 +10,5 @@ import application.api.models.db.Entity;
 public interface EntityRepository extends MongoRepository<Entity, String>{
 	
 	public Entity findByLabel(String label);
-	public List<Entity> findByLabelContaining(String label, Pageable pageable);
+	public List<Entity> findByLabelContainingIgnoreCase(String label, Pageable pageable);
 }

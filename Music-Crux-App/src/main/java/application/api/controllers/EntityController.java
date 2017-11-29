@@ -21,8 +21,7 @@ public class EntityController {
 	EntityService entityService;
 	
 	@RequestMapping(value = "/entity", method = RequestMethod.GET)
-	public ResponseEntity<List<EntityUI>> createMoleculeFromLabels(@RequestParam("label") String label, 
-			@RequestParam("limit") int limit) {
+	public ResponseEntity<List<EntityUI>> createMoleculeFromLabels(@RequestParam("name") String label, @RequestParam("limit") int limit) {
 		
 		List<EntityUI> entities = entityService.getEntitySearchResults(label, limit);
 		HttpStatus status = entities == null ? HttpStatus.NO_CONTENT : HttpStatus.OK;

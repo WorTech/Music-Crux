@@ -32,7 +32,7 @@ public class EntityService {
 	 */
 	public List<EntityUI> getEntitySearchResults(String name, int limit){
 		List<Entity> searchResults = new ArrayList<>();
-		searchResults = entityRepository.findByLabelContaining(name, new PageRequest(0,limit));
+		searchResults = entityRepository.findByLabelContainingIgnoreCase(name, new PageRequest(0,limit));
 		return EntityUI.dbModelToUiModel(searchResults);
 	}
 }
