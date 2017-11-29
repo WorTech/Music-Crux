@@ -25,8 +25,10 @@ public class EntityUI {
 		List<EntityUI> entityUIs = new ArrayList<>();
 
 		for (Entity entity : entities) {
-			EntityUI entityUI = new EntityUI(entity.getId(), entity.getType(), entity.getLabel());
-			entityUIs.add(entityUI);
+			if (entity != null) {
+				EntityUI entityUI = new EntityUI(entity.getId(), entity.getType(), entity.getLabel());
+				entityUIs.add(entityUI);
+			}
 		}
 		return entityUIs;
 	}
