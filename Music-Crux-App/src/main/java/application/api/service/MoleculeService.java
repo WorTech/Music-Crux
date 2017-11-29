@@ -21,7 +21,14 @@ public class MoleculeService {
 
 	@Autowired
 	RelationshipRepository relationshipRepository;
-
+	
+	/**
+	 * Returns a molecule for the specified @entityId .
+	 * 
+	 * @param entityId : id of the current entity being searched
+	 * @param depth    : The depth to search
+	 * @return : MoleculeUI
+	 */
 	public MoleculeUI createMoleculeFor(String entityId, int depth) {
 
 		HashSet<String> visited = new HashSet<>();
@@ -37,7 +44,16 @@ public class MoleculeService {
 		return MoleculeUI.dbModelToUiModel(molecule);
 	}
 
-	public void populateMolecule(String entityId, int depth, HashSet<String> visited, Molecule molecule) {
+	/**
+	 * Recursively searches the @entityId for a depth of @depth > 1. The resulting entities and
+	 * relationships are appended to the provided molecule.
+	 * 
+	 * @param entityId : id of the current entity being searched
+	 * @param depth    : The depth of the search
+	 * @param visited  : hashed ids of the visited entities
+	 * @param molecule : The molecule being modified
+	 */
+	private void populateMolecule(String entityId, int depth, HashSet<String> visited, Molecule molecule) {
 
 		if (depth <= 0 || visited.contains(entityId)) {
 			return;
