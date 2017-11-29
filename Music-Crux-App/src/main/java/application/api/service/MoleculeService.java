@@ -47,6 +47,7 @@ public class MoleculeService {
 
 		Entity entity = entityRepository.findOne(entityId);
 		List<Relationship> relationships = relationshipRepository.findByEntity(entityId);
+
 		molecule.addEntity(entity);
 		molecule.addRelationships(relationships);
 		visited.add(entityId);
@@ -54,12 +55,21 @@ public class MoleculeService {
 		for (Relationship relationship : relationships) {
 
 			if (!visited.contains(relationship.getEntity1().getId())) {
-				molecule.addEntity(relationship.getEntity1());
-				populateMolecule(relationship.getEntity1().getId(), depth, visited, molecule);
+				if (depth == 0) { // Once the end has been reached, the connected entity should be added to the
+									// molecule but it shouldn't recursively.
+					molecule.addEntity(relationship.getEntity1());
+					visited.add(relationship.getEntity1().getId());
+				} else {
+					populateMolecule(relationship.getEntity1().getId(), depth, visited, molecule);
+				}
 			}
 			if (!visited.contains(relationship.getEntity2().getId())) {
-				molecule.addEntity(relationship.getEntity2());
-				populateMolecule(relationship.getEntity2().getId(), depth, visited, molecule);
+				if (depth == 0) {
+					molecule.addEntity(relationship.getEntity2());
+					visited.add(relationship.getEntity2().getId());
+				} else {
+					populateMolecule(relationship.getEntity2().getId(), depth, visited, molecule);
+				}
 			}
 		}
 	}
