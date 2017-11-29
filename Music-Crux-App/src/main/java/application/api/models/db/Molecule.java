@@ -72,4 +72,11 @@ public class Molecule {
 
 		return new Molecule(joinedEntities, joinedRelationships);
 	}
+
+	@Override
+	public String toString() {
+		return "Molecule [entities=" + entities + ", relationships=" + relationships + "]";
+	}
+	
+	
 }

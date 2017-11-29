@@ -17,6 +17,9 @@ public class EntityUI {
 	private String label;
 
 	public static EntityUI dbModelToUiModel(Entity entity) {
+		if (entity == null )
+			return null;
+		
 		return new EntityUI(entity.getId(), entity.getType(), entity.getLabel());
 	}
 

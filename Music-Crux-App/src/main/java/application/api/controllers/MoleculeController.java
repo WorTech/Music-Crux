@@ -22,7 +22,7 @@ public class MoleculeController {
 	public ResponseEntity<MoleculeUI> getMolecules(@RequestParam("focus") String entityId, @RequestParam("depth") int depth ) {
 		
 		MoleculeUI molecule = moleculeService.createMoleculeFor(entityId, depth);
-		
+	
 		return new ResponseEntity<MoleculeUI>(molecule, HttpStatus.OK);
 	}
 }

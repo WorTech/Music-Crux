@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.api.models.ui.EntityUI;
-import application.api.models.ui.MoleculeUI;
 import application.api.service.EntityService;
 
 @RestController

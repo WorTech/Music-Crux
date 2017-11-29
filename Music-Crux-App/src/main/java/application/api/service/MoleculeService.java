@@ -1,6 +1,6 @@
 package application.api.service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,62 +21,47 @@ public class MoleculeService {
 
 	@Autowired
 	RelationshipRepository relationshipRepository;
-	
+
 	public MoleculeUI createMoleculeFor(String entityId, int depth) {
-		
+
+		HashSet<String> visited = new HashSet<>();
+		Molecule molecule = new Molecule();
+
+		if (depth <= 0) {
+			Entity entity = entityRepository.findOne(entityId);
+			molecule.addEntity(entity);
+		} else {
+			populateMolecule(entityId, depth, visited, molecule);
+		}
+
+		return MoleculeUI.dbModelToUiModel(molecule);
+	}
+
+	public void populateMolecule(String entityId, int depth, HashSet<String> visited, Molecule molecule) {
+
+		if (depth <= 0 || visited.contains(entityId)) {
+			return;
+		}
+
+		depth -= 1;
+
 		Entity entity = entityRepository.findOne(entityId);
 		List<Relationship> relationships = relationshipRepository.findByEntity(entityId);
-		
-		List<Entity> entities = new ArrayList<>();
-		entities.add(entity);
-		Molecule molecule = new Molecule(entities, relationships);
-		
-		return MoleculeUI.dbModelToUiModel(molecule);
-	}
-	
-	/*public MoleculeUI getMoleculeFor(String name, int limit) {
+		molecule.addEntity(entity);
+		molecule.addRelationships(relationships);
+		visited.add(entityId);
 
-		Molecule molecule = _getMoleculeFor(name, limit);
+		for (Relationship relationship : relationships) {
 
-		return MoleculeUI.dbModelToUiModel(molecule);
-
-	}
-
-	private Molecule _getMoleculeFor(String name, int limit) {
-
-		Molecule molecule;
-		Entity sourceEntity = entityRepository.findByLabel(name);
-		List<Relationship> relationships = new ArrayList<>();
-		List<Entity> entities = new ArrayList<>();
-
-		if (limit == 0) {
-			entities.add(sourceEntity);
-			return new Molecule(entities, relationships);
-		} else {
-			molecule = generateMoleculeForEntity(sourceEntity);
-
-			for (Relationship relationship : molecule.getRelationships()) {
-				Entity targetEntity = relationship.getTargetEntity();
-				molecule = Molecule.join(molecule, _getMoleculeFor(targetEntity.getLabel(), --limit));
+			if (!visited.contains(relationship.getEntity1().getId())) {
+				molecule.addEntity(relationship.getEntity1());
+				populateMolecule(relationship.getEntity1().getId(), depth, visited, molecule);
+			}
+			if (!visited.contains(relationship.getEntity2().getId())) {
+				molecule.addEntity(relationship.getEntity2());
+				populateMolecule(relationship.getEntity2().getId(), depth, visited, molecule);
 			}
 		}
-
-		return molecule;
-
 	}
-
-	private Molecule generateMoleculeForEntity(Entity sourceEntity) {
-
-		List<Relationship> relationships = relationshipRepository.findBySourceEntity(sourceEntity);
-		List<Entity> entities = new ArrayList<>();
-
-		// populate the entities list with the targets of the provided sourceEntity
-		for (Relationship relationship : relationships) {
-			entities.add(relationship.getTargetEntity());
-		}
-
-		return new Molecule(entities, relationships);
-
-	}*/
 
 }
