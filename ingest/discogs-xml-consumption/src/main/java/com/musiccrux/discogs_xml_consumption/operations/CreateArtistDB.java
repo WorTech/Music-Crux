@@ -22,7 +22,7 @@ import com.musiccrux.discogs_xml_consumption.utils.DiscogsXmlFileReader;
  * @author Taiwo Oyekanmi
  *
  */
-@Component
+//@Component
 public class CreateArtistDB implements CommandLineRunner {
 
 	@Autowired
