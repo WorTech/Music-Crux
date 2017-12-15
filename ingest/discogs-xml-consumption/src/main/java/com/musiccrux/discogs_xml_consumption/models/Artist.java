@@ -49,6 +49,19 @@ public final class Artist {
 		return members;
 	}
 
+	
+	public void setDiscogs_id(Long discogs_id) {
+		this.discogs_id = discogs_id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMembers(Members members) {
+		this.members = members;
+	}
+
 	@Override
 	public String toString() {
 		return "Artist [discogs_id=" + discogs_id + ", name=" + name + ", members=" + members + "]";
