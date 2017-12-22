@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="https://bootswatch.com/slate/bootstrap.min.css" />
+	href="https://bootswatch.com/4/slate/bootstrap.css" />
 <link rel="stylesheet" href="styles/molecule-style.css" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
 	<script src="https://d3js.org/d3.v4.js"></script>
 	
@@ -15,21 +16,16 @@
 	<script src="molecule/molecule.controller.js"></script>
 	<script src="molecule/molecule.directive.js"></script> 
 	<script src="molecule/molecule.factory.js"></script> 
-	
-	
-	<!-- <script src="directives/molecule.js"></script>  -->
-
-
+	<script src="entity-search/entity-search.js"></script>
 </head>
-<body ng-app="molecule">
-	<molecule></molecule>
+<body ng-app="musiccrux">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">MusicCrux</a>
+		<entity-search></entity-search>
+	</nav>
 
-
-
-
-
-
-
-
+	<div class="jumbotron">
+<!-- 		<molecule></molecule> -->
+	</div>
 </body>
 </html>
