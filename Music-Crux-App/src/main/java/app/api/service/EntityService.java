@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import app.api.models.db.Entity;
+
 import app.api.models.ui.EntityUI;
-import app.api.repositories.EntityRepository;
-import app.api.repositories.RelationshipRepository;
+import models.Entity;
+import repositories.EntityRepository;
+import repositories.RelationshipRepository;
+
 
 @Service
 public class EntityService {

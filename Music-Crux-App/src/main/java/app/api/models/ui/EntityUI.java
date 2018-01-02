@@ -3,8 +3,9 @@ package app.api.models.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.api.models.EntityType;
-import app.api.models.db.Entity;
+import models.Entity;
+import models.EntityType;
+
 
 public class EntityUI {
 

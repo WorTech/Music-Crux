@@ -3,7 +3,7 @@ package app.api.models.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.api.models.db.Molecule;
+import app.api.models.Molecule;
 
 public class MoleculeUI {
 	private List<EntityUI> entities = new ArrayList<>();

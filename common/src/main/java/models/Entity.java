@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Entity {
 
 	@Id
-	private BigInteger id;
+	private String id;
 	@Indexed
 	private String label; // artist name, band name, etc
 	@Indexed
@@ -19,17 +19,17 @@ public class Entity {
 
 	}
 
-	public Entity(BigInteger id, EntityType type, String label) {
+	public Entity(String id, EntityType type, String label) {
 		this.id = id;
 		this.type = type;
 		this.label = label;
 	}
 
-	public BigInteger getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

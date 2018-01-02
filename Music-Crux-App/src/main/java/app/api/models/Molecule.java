@@ -1,7 +1,10 @@
-package app.api.models.db;
+package app.api.models;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Entity;
+import models.Relationship;
 
 public class Molecule {
 	private List<Entity> entities = new ArrayList<>();

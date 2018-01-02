@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Band {
 
 	@Id
-	private BigInteger id;
+	private String id;
 	@Indexed
 	private String label;
 	@DBRef
@@ -20,18 +20,18 @@ public class Band {
 
 	}
 
-	public Band(BigInteger id, String label, Entity entity) {
+	public Band(String id, String label, Entity entity) {
 		super();
 		this.id = id;
 		this.label = label;
 		this.entity = entity;
 	}
 
-	public BigInteger getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

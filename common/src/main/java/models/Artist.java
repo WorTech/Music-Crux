@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Artist {
 	@Id
-	private BigInteger id;
+	private String id;
 	@Indexed
 	private String label;
 	@DBRef
@@ -19,17 +19,17 @@ public class Artist {
 
 	}
 
-	public Artist(BigInteger id, String label, Entity entity) {
+	public Artist(String id, String label, Entity entity) {
 		this.id = id;
 		this.label = label;
 		this.entity = entity;
 	}
 
-	public BigInteger getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
