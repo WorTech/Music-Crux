@@ -5,11 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import application.musiccruxDB.models.band.Band;
-import application.musiccruxDB.models.entity.Entity;
-import application.musiccruxDB.models.entity.EntityType;
-import application.musiccruxDB.repositories.BandRepository;
-import application.musiccruxDB.repositories.EntityRepository;
+import models.Band;
+import models.Entity;
+import models.EntityType;
+import repositories.BandRepository;
+import repositories.EntityRepository;
+
+
 
 /**
  * Uses the Entity Repository and generates a Band of the entities of type Band

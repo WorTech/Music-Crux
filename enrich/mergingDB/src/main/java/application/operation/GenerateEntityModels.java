@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 import application.discogsDB.models.Artist;
 import application.discogsDB.repositories.DiscogsArtistRepository;
-import application.musiccruxDB.models.entity.Entity;
-import application.musiccruxDB.models.entity.EntityType;
-import application.musiccruxDB.repositories.EntityRepository;
+import models.Entity;
+import models.EntityType;
+import repositories.EntityRepository;
 
 /*
  * Read the Discogs database and create Entities collection from the Artists collection.
