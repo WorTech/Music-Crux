@@ -41,7 +41,7 @@ public class GenerateEntityModels implements CommandLineRunner {
 			} else { // "artists" with members are actually bands
 				entity.setType(EntityType.BAND);
 			}
-			System.out.println(entity);
+			//System.out.println(entity);
 			db.save(entity);
 		}
 	}

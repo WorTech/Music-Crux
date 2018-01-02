@@ -60,8 +60,8 @@ public class GenerateRelationshipModels implements CommandLineRunner {
 					relationship.setEntity2(bandEntity);
 					relationship.setType(RelationshipType.ARTIST_BAND);
 					db.save(relationship);
-					System.out.println(
-							" (ARTIST_BAND) relationship made between " + label + " AND " + bandEntity.getLabel());
+//					System.out.println(
+//							" (ARTIST_BAND) relationship made between " + label + " AND " + bandEntity.getLabel());
 				}
 			}
 		}
