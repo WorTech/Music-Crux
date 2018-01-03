@@ -58,7 +58,7 @@ public class GenerateRelationshipModels implements CommandLineRunner {
 					Relationship relationship = new Relationship();
 					relationship.setEntity1(artistEntity);
 					relationship.setEntity2(bandEntity);
-					relationship.setType(RelationshipType.ARTIST_BAND);
+					relationship.setType(RelationshipType.MEMBERSHIP);
 					db.save(relationship);
 //					System.out.println(
 //							" (ARTIST_BAND) relationship made between " + label + " AND " + bandEntity.getLabel());
