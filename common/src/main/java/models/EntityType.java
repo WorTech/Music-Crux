@@ -1,5 +1,6 @@
 package models;
 public enum EntityType {
 	ARTIST,
-	BAND
+	BAND,
+	ALBUM
 }
