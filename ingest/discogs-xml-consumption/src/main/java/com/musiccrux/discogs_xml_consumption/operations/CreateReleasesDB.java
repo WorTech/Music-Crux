@@ -16,7 +16,7 @@ import com.musiccrux.discogs_xml_consumption.utils.DiscogsXmlFileReader;
  *
  */
 
-@Component
+//@Component
 public class CreateReleasesDB implements CommandLineRunner {
 
 	@Override

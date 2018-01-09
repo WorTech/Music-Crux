@@ -35,15 +35,9 @@ public class Release {
 //	}
 
 
-	public static class Track {
+	private static class Track {
 		private String title;
 		private String position;
 		private String duration;
-	}
-	
-	public static class Label {
-		private long id;
-		private String name;
-		private String catno;
 	}
 }

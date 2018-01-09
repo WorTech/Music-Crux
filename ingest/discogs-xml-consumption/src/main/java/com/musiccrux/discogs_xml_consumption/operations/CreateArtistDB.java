@@ -49,3 +49,16 @@ public class CreateArtistDB implements CommandLineRunner {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
