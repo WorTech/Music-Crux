@@ -19,7 +19,7 @@ import repositories.RelationshipRepository;
  * Creates a relationship collection between two entities in the MusicCrux
  */
 @Component
-@Order(value = 3)
+@Order(value = 4)
 public class GenerateRelationshipModels implements CommandLineRunner {
 
 	@Autowired

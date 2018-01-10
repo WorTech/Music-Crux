@@ -1,23 +1,22 @@
-package application.discogsDB.models;
+package models;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Release {
+public class Album {
 
-	private Long discogs_id;
 	private String country;
 	private String title;
-	private String released;
+	private String releaseDate;
 
 	private List<Track> tracks;
 	private List<Artist> contributors;
 	private List<Label> labels;
-	private List<Artist> creators;
+	private List<Entity> creators;
 	private List<String> genres;
-	private List<String> styles;
+	private List<String> subGenres;
 
 	private static class Track {
 		private String title;
@@ -30,6 +29,8 @@ public class Release {
 		}
 	}
 
+	// TODO: replace this class with Ati's label
+	//
 	private static class Label {
 		private long id;
 		private String name;
@@ -39,14 +40,6 @@ public class Release {
 		public String toString() {
 			return "Label [id=" + id + ", name=" + name + ", catno=" + catno + "]";
 		}
-	}
-
-	public Long getDiscogs_id() {
-		return discogs_id;
-	}
-
-	public void setDiscogs_id(Long discogs_id) {
-		this.discogs_id = discogs_id;
 	}
 
 	public String getCountry() {
@@ -65,12 +58,12 @@ public class Release {
 		this.title = title;
 	}
 
-	public String getReleased() {
-		return released;
+	public String getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setReleased(String released) {
-		this.released = released;
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 	public List<Track> getTracks() {
@@ -97,11 +90,11 @@ public class Release {
 		this.labels = labels;
 	}
 
-	public List<Artist> getCreators() {
+	public List<Entity> getCreators() {
 		return creators;
 	}
 
-	public void setCreators(List<Artist> creators) {
+	public void setCreators(List<Entity> creators) {
 		this.creators = creators;
 	}
 
@@ -113,23 +106,22 @@ public class Release {
 		this.genres = genres;
 	}
 
-	public List<String> getStyles() {
-		return styles;
+	public List<String> getSubGenres() {
+		return subGenres;
 	}
 
-	public void setStyles(List<String> styles) {
-		this.styles = styles;
+	public void setSubGenres(List<String> subGenres) {
+		this.subGenres = subGenres;
 	}
 
 	@Override
 	public String toString() {
-		return "Release [discogs_id=" + discogs_id + ", country=" + country + ", title=" + title + ", released="
-				+ released + ", tracks=" + tracks + ", contributors=" + contributors + ", labels=" + labels
-				+ ", creators=" + creators + ", genres=" + genres + ", styles=" + styles + "]";
+		return "Album [country=" + country + ", title=" + title + ", releaseDate=" + releaseDate + ", tracks=" + tracks
+				+ ", contributors=" + contributors + ", labels=" + labels + ", creators=" + creators + ", genres="
+				+ genres + ", subGenres=" + subGenres + "]";
 	}
 
 	
-
 	
 
 }
