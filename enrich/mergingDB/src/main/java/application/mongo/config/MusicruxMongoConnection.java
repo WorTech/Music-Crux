@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableMongoRepositories(
-		basePackages = {"application.musiccruxDB.repositories" }, 
+		basePackages = {"repositories" }, 
 		mongoTemplateRef = "musiccruxMongoTemplate")
 @ConfigurationProperties(prefix = "musiccrux.mongodb")
 public class MusicruxMongoConnection extends AbstractMongoConfig {

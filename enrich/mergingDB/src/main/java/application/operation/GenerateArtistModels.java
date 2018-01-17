@@ -5,11 +5,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import application.musiccruxDB.models.artist.Artist;
-import application.musiccruxDB.models.entity.Entity;
-import application.musiccruxDB.models.entity.EntityType;
-import application.musiccruxDB.repositories.ArtistRepository;
-import application.musiccruxDB.repositories.EntityRepository;
+import models.Entity;
+import models.Artist;
+import models.EntityType;
+import repositories.ArtistRepository;
+import repositories.EntityRepository;
 
 /**
  * Uses the Entity Repository and generates a Artist of the entities of type
@@ -19,7 +19,7 @@ import application.musiccruxDB.repositories.EntityRepository;
 @Component
 @Order(value = 2)
 public class GenerateArtistModels implements CommandLineRunner {
-	
+
 	@Autowired
 	private EntityRepository entityRepository;
 
@@ -33,7 +33,7 @@ public class GenerateArtistModels implements CommandLineRunner {
 	 */
 	private void constructArtistFromEntity() {
 		for (Entity entity : entityRepository.findByType(EntityType.ARTIST)) {
-			//Artist artist = new Artist(entity.getId(), entity.getLabel());
+			// Artist artist = new Artist(entity.getId(), entity.getLabel());
 			Artist artist = new Artist();
 			artist.setEntity(entity);
 			artist.setLabel(entity.getLabel());

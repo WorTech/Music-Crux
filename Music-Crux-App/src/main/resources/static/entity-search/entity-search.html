@@ -1,0 +1,3 @@
+<form class="form-inline">
+	<input class="form-control" type="text" ng-model="selection" uib-typeahead="entity.label for entity in findEntities($viewValue)" typeahead-template-url="/entity-search/entity-search-result.html" typeahead-on-select="select($item)" placeholder="search...">
+</form>

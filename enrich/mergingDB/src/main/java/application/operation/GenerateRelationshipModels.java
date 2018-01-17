@@ -7,18 +7,19 @@ import org.springframework.stereotype.Component;
 
 import application.discogsDB.models.Artist;
 import application.discogsDB.repositories.DiscogsArtistRepository;
-import application.musiccruxDB.models.entity.Entity;
-import application.musiccruxDB.models.entity.EntityType;
-import application.musiccruxDB.models.relationship.Relationship;
-import application.musiccruxDB.models.relationship.RelationshipType;
-import application.musiccruxDB.repositories.EntityRepository;
-import application.musiccruxDB.repositories.RelationshipRepository;
+
+import models.Entity;
+import models.EntityType;
+import models.Relationship;
+import models.RelationshipType;
+import repositories.EntityRepository;
+import repositories.RelationshipRepository;
 
 /**
  * Creates a relationship collection between two entities in the MusicCrux
  */
 @Component
-@Order(value = 3)
+@Order(value = 4)
 public class GenerateRelationshipModels implements CommandLineRunner {
 
 	@Autowired
@@ -44,9 +45,11 @@ public class GenerateRelationshipModels implements CommandLineRunner {
 
 		for (Entity bandEntity : entityRepository.findByType(EntityType.BAND)) {
 
-			Artist discogsArtist = discogsArtistRepository.findByName(bandEntity.getLabel());// Find the band (marked as 'artist' in discogs)
+			Artist discogsArtist = discogsArtistRepository.findByName(bandEntity.getLabel());// Find the band (marked as
+																								// 'artist' in discogs)
 
-			if (discogsArtist != null && discogsArtist.getMembers() != null) { // Found an discogsArtist (in reality this is a Band) with members
+			if (discogsArtist != null && discogsArtist.getMembers() != null) { // Found an discogsArtist (in reality
+																				// this is a Band) with members
 
 				String[] memberLabels = discogsArtist.getMembers().getNames();
 				for (String label : memberLabels) {
@@ -55,9 +58,10 @@ public class GenerateRelationshipModels implements CommandLineRunner {
 					Relationship relationship = new Relationship();
 					relationship.setEntity1(artistEntity);
 					relationship.setEntity2(bandEntity);
-					relationship.setType(RelationshipType.ARTIST_BAND);
+					relationship.setType(RelationshipType.MEMBERSHIP);
 					db.save(relationship);
-					System.out.println(" (ARTIST_BAND) relationship made between " + label + " AND " + bandEntity.getLabel() );
+//					System.out.println(
+//							" (ARTIST_BAND) relationship made between " + label + " AND " + bandEntity.getLabel());
 				}
 			}
 		}

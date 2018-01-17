@@ -2,34 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://bootswatch.com/slate/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://bootswatch.com/3/slate/bootstrap.css" />
+
 <link rel="stylesheet" href="styles/molecule-style.css" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
-
+	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
 	<script src="https://d3js.org/d3.v4.js"></script>
 	
-	<script src="app.js"></script>
-	
-	<script src="molecule/molecule.controller.js"></script>
-	<script src="molecule/molecule.directive.js"></script> 
-	<script src="molecule/molecule.factory.js"></script> 
-	
-	
-	<!-- <script src="directives/molecule.js"></script>  -->
-
-
+	<script src="app.js"></script>	
+	<script src="molecule/molecule.js"></script>
+	<script src="entity-search/entity-search.js"></script>
 </head>
-<body ng-app="molecule">
-	<molecule></molecule>
-
-
-
-
-
-
-
-
+<body ng-app="musiccrux">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">MusicCrux</a>
+			</div>
+			 <div class="collapse navbar-collapse">
+			 	<form class="navbar-form navbar-left">
+        			<div class="form-group">
+        				<entity-search></entity-search>
+        			</div>
+        		</form>
+			 </div>
+		</div>
+	</nav>
+	<div class="jumbotron">
+		<molecule></molecule>
+	</div>
 </body>
 </html>

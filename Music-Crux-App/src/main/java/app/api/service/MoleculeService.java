@@ -6,12 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.api.models.db.Entity;
-import app.api.models.db.Molecule;
-import app.api.models.db.Relationship;
+import app.api.models.Molecule;
 import app.api.models.ui.MoleculeUI;
-import app.api.repositories.EntityRepository;
-import app.api.repositories.RelationshipRepository;
+import models.Entity;
+import models.Relationship;
+import repositories.EntityRepository;
+import repositories.RelationshipRepository;
+
 
 @Service
 public class MoleculeService {

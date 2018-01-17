@@ -3,8 +3,10 @@ package app.api.models.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.api.models.RelationshipType;
-import app.api.models.db.Relationship;
+import models.Relationship;
+import models.RelationshipType;
+
+
 
 public class RelationshipUI {
 
