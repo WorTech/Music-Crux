@@ -8,12 +8,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	
+
 	<modules>
-        	<module>enrich</module>
+        <module>enrich</module>
 		<module>ingest</module>
-        	<module>Music-Crux-App</module>
-    	</modules>
-
-
+        <module>Music-Crux-App</module>
+    </modules>
+    
 </project>
