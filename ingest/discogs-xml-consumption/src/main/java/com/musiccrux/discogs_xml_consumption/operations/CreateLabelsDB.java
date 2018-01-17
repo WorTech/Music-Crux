@@ -39,11 +39,11 @@ public class CreateLabelsDB implements CommandLineRunner{
 	public void run(String... arg0) throws Exception {
 
 		// Initialize OpenNLP tokenizers and models
-		InputStream inputStreamTokenizer = new FileInputStream("C:/Users/asok/Downloads/en-token.bin");
+		InputStream inputStreamTokenizer = new FileInputStream(arg0[1].toString());
 		TokenizerModel tokenModel = new TokenizerModel(inputStreamTokenizer);
 		TokenizerME tokenizer = new TokenizerME(tokenModel); 
 
-		InputStream inputStreamNameFinder = new FileInputStream("C:/Users/asok/Downloads/en-ner-location.bin");
+		InputStream inputStreamNameFinder = new FileInputStream(arg0[2].toString());
 		TokenNameFinderModel model = new TokenNameFinderModel(inputStreamNameFinder);
 		NameFinderME nameFinder = new NameFinderME(model);      
 
@@ -57,13 +57,13 @@ public class CreateLabelsDB implements CommandLineRunner{
 		while (xmlFileReader.hasNext()) {
 			
 			String labelXmlString = xmlFileReader.next();
-
-			JSONObject xmlJsonObj = XML.toJSONObject(labelXmlString);
-			JSONObject LabelJson = xmlJsonObj.getJSONObject("label");
-
-			Label label = mapper.readValue(LabelJson.toString(), Label.class);
 			
-			//If the contactinfo xml tag is not empty, extract the location via OpenNLP
+			JSONObject xmlJsonObj = XML.toJSONObject(labelXmlString);
+			JSONObject LabelJson = xmlJsonObj.getJSONObject("label");			
+			
+			Label label = mapper.readValue(LabelJson.toString(), Label.class);
+
+			//If the contactinfo xml tag is not empty, extract the  location via OpenNLP
 			if(label.getContactinfo() != null) {
 				String XMLContactTag = label.getContactinfo();
 				String tokens[] = tokenizer.tokenize(XMLContactTag);

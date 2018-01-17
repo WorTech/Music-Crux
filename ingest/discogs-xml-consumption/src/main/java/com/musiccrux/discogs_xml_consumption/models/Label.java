@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mockito.internal.util.collections.ArrayUtils;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.util.StringUtils;
@@ -32,9 +33,19 @@ public class Label {
 	private String name;
 	private Sublabels sublabels;
 	private String contactinfo;
-	private String[] parsedInfo;
 	private List<String> locations;
 
+
+	
+	public Sublabels getSublabels() {
+		return sublabels;
+	}
+	public void setSublabels(Sublabels sublabels) {
+		this.sublabels = sublabels;
+	}
+	public void setLocations(List<String> locations) {
+		this.locations = locations;
+	}
 	public Label() {
 		this.locations = new ArrayList<String>();
 	}
@@ -44,9 +55,7 @@ public class Label {
 	public void setContactinfo(String contactinfo) {
 		this.contactinfo = contactinfo;
 	}
-	public void setSublabels(Sublabels sublabels) {
-		this.sublabels = sublabels;
-	}
+
 	public long getDiscogs_id() {
 		return discogs_id;
 	}
@@ -60,9 +69,6 @@ public class Label {
 		this.name = name;
 	}
 
-	public Sublabels getSublabels() {
-		return sublabels;
-	}
 
 	public List<String> getLocations() {
 		return locations;
