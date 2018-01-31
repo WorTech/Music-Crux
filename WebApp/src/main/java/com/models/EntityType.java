@@ -1,9 +1,9 @@
-package models;
+package com.models;
 
 public enum EntityType {
-    ALBUM,
     ARTIST,
     BAND,
+    ALBUM,
     LABEL,
     TRACK
 }
