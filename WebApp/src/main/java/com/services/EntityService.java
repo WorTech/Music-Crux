@@ -1,18 +1,13 @@
 package com.services;
 
-		import java.net.URI;
-		import java.util.ArrayList;
-		import java.util.List;
+import java.net.URI;
+import java.util.List;
 
-		import com.models.*;
-		import org.springframework.http.HttpEntity;
-		import org.springframework.http.HttpHeaders;
-		import org.springframework.http.HttpMethod;
-		import org.springframework.http.MediaType;
-		import org.springframework.stereotype.Service;
-		import org.springframework.web.client.RestTemplate;
-		import org.springframework.web.util.UriComponents;
-		import org.springframework.web.util.UriComponentsBuilder;
+import com.models.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class EntityService {
@@ -21,11 +16,13 @@ public class EntityService {
 	// TODO: Update this function to reflect the changes to the Relationship models
 
 	/**
-	 * Creates a molecule from the provided labels.
-	 * The Molecule consists of the entities and relationships corresponding to the labels
-	 * //@param entities
-	 *
-	 * @return Molecule
+	 * Returns a list of entities from the provided arguments.
+	 * This service method sends a request to the Music-Crux RESTful Service depending on the type (EntityType) passed in
+	 * A limit parameter may be passed in to limit the number of search results returned
+	 * @param type
+	 * @param name
+	 * @param limit
+	 * @return List<Entity>
 	 */
 
 	//Service makes the GET requests to Music-Crux RESTful API
