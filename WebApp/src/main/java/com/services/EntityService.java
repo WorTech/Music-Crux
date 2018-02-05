@@ -13,7 +13,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class EntityService {
 
 	private RestTemplate restTemplate = new RestTemplate();
-	// TODO: Update this function to reflect the changes to the Relationship models
 
 	/**
 	 * Returns a list of entities from the provided arguments.

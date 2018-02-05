@@ -11,7 +11,7 @@ import org.json.XML;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 //@Order(value = 1)
 public class CreateAlbumDB implements CommandLineRunner {
 
@@ -21,8 +21,8 @@ public class CreateAlbumDB implements CommandLineRunner {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-
-            String releaseXmlFileString = arg0[3].toString();
+            //releases.xml
+            String releaseXmlFileString = arg0[0].toString();
             XmlFileReader xmlFileReader = new XmlFileReader(releaseXmlFileString);
 
             while (xmlFileReader.hasNext()) {

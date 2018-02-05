@@ -25,7 +25,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Artist> artistEntity = new HttpEntity(artist, headers);
-        URI = "http://localhost:8080/Artist";
+        URI = "http://localhost:8081/artist";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -47,6 +47,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
+        System.out.println(status);
         return status;
     }
 
@@ -56,7 +57,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Band> bandEntity = new HttpEntity(band, headers);
-        URI = "http://localhost:8080/Band";
+        URI = "http://localhost:8081/band";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -78,6 +79,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
+        System.out.println(status);
         return status;
     }
 
@@ -88,7 +90,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Album> albumEntity = new HttpEntity(album, headers);
-        URI = "http://localhost:8080/Album";
+        URI = "http://localhost:8081/album";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -111,6 +113,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
+        System.out.println(status);
         return status;
     }
 
@@ -119,7 +122,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Label> labelEntity = new HttpEntity(label, headers);
-        URI = "http://localhost:8080/Label";
+        URI = "http://localhost:8081/label";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -137,6 +140,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
+        System.out.println(status);
         return status;
     }
 }
