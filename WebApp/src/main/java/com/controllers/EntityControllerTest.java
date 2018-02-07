@@ -6,8 +6,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class EntityControllerTest {
 
     private String URL = "http://localhost:8080/api/entity?name=test&type=label&limit=3";
