@@ -38,7 +38,7 @@ public class BandService {
      * @return The Band that was added
      */
     public Band add(Band band) {
-
+        //THIS IS A TEST
         return bandRepository.save(band);
     }
 
