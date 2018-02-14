@@ -24,7 +24,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Artist> artistEntity = new HttpEntity(artist, headers);
-        URI = "http://localhost:8080/Artist";
+        URI = "http://localhost:8081/artist";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -55,7 +55,7 @@ public class DiscogsPostReq {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Band> bandEntity = new HttpEntity(band, headers);
-        URI = "http://localhost:8080/Band";
+        URI = "http://localhost:8081/band";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
@@ -81,44 +81,44 @@ public class DiscogsPostReq {
     }
 
 
-    public HttpStatus postAlbumEntity(Release release) {
-
-        //Sets up the HTTP headers and content for the RestTemplate and the URI
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Release> albumEntity = new HttpEntity(release, headers);
-        URI = "http://localhost:8080/Release";
-        HttpStatus status = HttpStatus.NO_CONTENT;
-
-        try {
-            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, albumEntity, Release.class);
-            if (entityOut.getBody() != null) {
-                status = entityOut.getStatusCode();
-            } else {
-                status = entityOut.getStatusCode();
-            }
-
-        } catch (HttpClientErrorException e) {
-            System.out.println("Error with client request.");
-            System.out.println(e.getMostSpecificCause());
-            System.out.println(e.getResponseBodyAsString());
-            e.printStackTrace();
-
-        } catch (HttpServerErrorException e) {
-            System.out.println("Error with server.");
-            System.out.println(e.getMostSpecificCause());
-            System.out.println(e.getResponseBodyAsString());
-            e.printStackTrace();
-        }
-        return status;
-    }
+//    public HttpStatus postAlbumEntity(Release release) {
+//
+//        //Sets up the HTTP headers and content for the RestTemplate and the URI
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        HttpEntity<Release> albumEntity = new HttpEntity(release, headers);
+//        URI = "http://localhost:8080/Release";
+//        HttpStatus status = HttpStatus.NO_CONTENT;
+//
+//        try {
+//            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, albumEntity, Release.class);
+//            if (entityOut.getBody() != null) {
+//                status = entityOut.getStatusCode();
+//            } else {
+//                status = entityOut.getStatusCode();
+//            }
+//
+//        } catch (HttpClientErrorException e) {
+//            System.out.println("Error with client request.");
+//            System.out.println(e.getMostSpecificCause());
+//            System.out.println(e.getResponseBodyAsString());
+//            e.printStackTrace();
+//
+//        } catch (HttpServerErrorException e) {
+//            System.out.println("Error with server.");
+//            System.out.println(e.getMostSpecificCause());
+//            System.out.println(e.getResponseBodyAsString());
+//            e.printStackTrace();
+//        }
+//        return status;
+//    }
 
     public HttpStatus postLabelEntity(Label label) {
         //Sets up the HTTP headers and content for the RestTemplate and the URI
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Label> labelEntity = new HttpEntity(label, headers);
-        URI = "http://localhost:8080/Label";
+        URI = "http://localhost:8080/label";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {

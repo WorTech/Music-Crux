@@ -23,11 +23,11 @@ public class EntityService {
     }
 
 
-    public ResponseEntity<Release> entity(Release release){
-        //System.out.println("Release:");
-        System.out.println(release.toString());
-        return null;
-    }
+//    public ResponseEntity<Release> entity(Release release){
+//        //System.out.println("Release:");
+//        System.out.println(release.toString());
+//        return null;
+//    }
 
 
     public ResponseEntity<Label> entity(Label label){

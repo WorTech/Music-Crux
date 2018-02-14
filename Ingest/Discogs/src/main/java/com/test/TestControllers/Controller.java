@@ -30,12 +30,12 @@ public class Controller {
     }
 
 
-    @RequestMapping(value = "/Album", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ResponseEntity<Release> addAlbum(@RequestBody Release release){
-        HttpStatus status = release == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
-        service.entity(release);
-        return new ResponseEntity<Release>(release, status);
-    }
+//    @RequestMapping(value = "/Album", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+//    public ResponseEntity<Release> addAlbum(@RequestBody Release release){
+//        HttpStatus status = release == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
+//        service.entity(release);
+//        return new ResponseEntity<Release>(release, status);
+//    }
 
   @RequestMapping(value = "/Label", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Label> addArtist(@RequestBody Label label) {
