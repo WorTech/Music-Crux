@@ -48,7 +48,6 @@ public class CreateAlbumDB implements CommandLineRunner {
                     });
 
             mapper.registerModule(module);
-            System.out.println("Test");
             String releaseXmlFileString = arg0[0].toString();
             XmlFileReader xmlFileReader = new XmlFileReader(releaseXmlFileString);
 

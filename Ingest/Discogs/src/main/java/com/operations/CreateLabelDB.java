@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import opennlp.tools.namefind.NameFinderME;
@@ -19,9 +20,8 @@ import opennlp.tools.util.Span;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-//@Component
-//Change this value when done.
-//@Order(value = 1)
+@Component
+@Order(value = 3)
 public class CreateLabelDB implements CommandLineRunner{
 
     @Override
@@ -40,7 +40,7 @@ public class CreateLabelDB implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
-            String labelXmlFileString = arg0[2].toString();
+            String labelXmlFileString = arg0[3].toString();
             XmlFileReader xmlFileReader = new XmlFileReader(labelXmlFileString);
 
             while (xmlFileReader.hasNext()) {
