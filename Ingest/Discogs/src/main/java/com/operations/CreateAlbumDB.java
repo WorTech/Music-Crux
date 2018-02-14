@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Component
-@Order(value = 1)
+@Order(value = 4)
 public class CreateAlbumDB implements CommandLineRunner {
 
     @Override
