@@ -34,5 +34,4 @@ public class ArtistController {
 
         return artistService.update(id, artist);
     }
-
 }
