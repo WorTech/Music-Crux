@@ -21,8 +21,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 
-@Component
-@Order(value = 1)
+//@Component
+//@Order(value = 1)
 public class CreateAlbumDB implements CommandLineRunner {
 
     @Override
@@ -61,7 +61,7 @@ public class CreateAlbumDB implements CommandLineRunner {
 //                System.out.println(release.toString());
                 JAXBContext jaxbContext = JAXBContext.newInstance(Release.class);
                 Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                Release album = (Release)jaxbUnmarshaller.unmarshal();
+                //Release album = (Release)jaxbUnmarshaller.unmarshal();
 //
                 //Posts the Release to the Music-Crux REST endpoint
 

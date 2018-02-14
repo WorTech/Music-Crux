@@ -19,7 +19,7 @@ import opennlp.tools.util.Span;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-@Component
+//@Component
 //Change this value when done.
 //@Order(value = 1)
 public class CreateLabelDB implements CommandLineRunner{
