@@ -1,6 +1,6 @@
 package com.test.TestServices;
 
-import com.models.Album;
+import com.models.Release;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
@@ -24,9 +24,9 @@ public class EntityService {
     }
 
 
-    public ResponseEntity<Album> entity(Album album){
-        System.out.println("Album:");
-        System.out.println(album.toString());
+    public ResponseEntity<Release> entity(Release release){
+        System.out.println("Release:");
+        System.out.println(release.toString());
         return null;
     }
 

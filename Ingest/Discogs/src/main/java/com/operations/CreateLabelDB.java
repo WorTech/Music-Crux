@@ -40,7 +40,7 @@ public class CreateLabelDB implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
-            String labelXmlFileString = arg0[0].toString();
+            String labelXmlFileString = arg0[2].toString();
             XmlFileReader xmlFileReader = new XmlFileReader(labelXmlFileString);
 
             while (xmlFileReader.hasNext()) {

@@ -28,7 +28,7 @@ public class CreateArtistAndBandDB implements CommandLineRunner{
        try {
            ObjectMapper mapper = new ObjectMapper();
            mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-           String artistXmlFileString = arg0[0].toString();
+           String artistXmlFileString = arg0[3].toString();
            XmlFileReader xmlFileReader = new XmlFileReader(artistXmlFileString);
 
            while (xmlFileReader.hasNext()) {

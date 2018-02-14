@@ -1,6 +1,6 @@
 package com.postrequests;
 
-import com.models.Album;
+import com.models.Release;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
@@ -82,17 +82,17 @@ public class DiscogsPostReq {
     }
 
 
-    public HttpStatus postAlbumEntity(Album album) {
+    public HttpStatus postAlbumEntity(Release release) {
 
         //Sets up the HTTP headers and content for the RestTemplate and the URI
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Album> albumEntity = new HttpEntity(album, headers);
-        URI = "http://localhost:8080/Album";
+        HttpEntity<Release> albumEntity = new HttpEntity(release, headers);
+        URI = "http://localhost:8080/Release";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
-            ResponseEntity<Album> entityOut = restTemplate.postForEntity(URI, albumEntity, Album.class);
+            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, albumEntity, Release.class);
             if (entityOut.getBody() != null) {
                 status = entityOut.getStatusCode();
             } else {

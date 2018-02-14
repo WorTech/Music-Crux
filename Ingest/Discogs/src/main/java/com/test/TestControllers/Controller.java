@@ -1,5 +1,5 @@
 package com.test.TestControllers;
-import com.models.Album;
+import com.models.Release;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
@@ -32,10 +32,10 @@ public class Controller {
 
 
     @RequestMapping(value = "/Album", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ResponseEntity<Album> addAlbum(@RequestBody Album album){
-        HttpStatus status = album == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
-        service.entity(album);
-        return new ResponseEntity<Album>(album, status);
+    public ResponseEntity<Release> addAlbum(@RequestBody Release release){
+        HttpStatus status = release == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
+        service.entity(release);
+        return new ResponseEntity<Release>(release, status);
     }
 
   @RequestMapping(value = "/Label", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
