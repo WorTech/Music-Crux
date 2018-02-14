@@ -16,16 +16,19 @@ public class ArtistController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Artist getArtist(@PathVariable("id") String id) {
+
         return artistService.getArtist(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, params = {"name", "limit"})
     public Collection<Artist> getArtistsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
+
         return artistService.getArtistsByName(name, limit);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Artist add(@RequestBody Artist artist) {
+
         return artistService.add(artist);
     }
 
@@ -34,5 +37,4 @@ public class ArtistController {
 
         return artistService.update(id, artist);
     }
-
 }

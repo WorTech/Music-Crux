@@ -1,6 +1,9 @@
 package com.services;
 
+import com.db.mongo.models.Artist;
 import com.db.mongo.models.Relationship;
+import com.db.mongo.models.RelationshipType;
+import com.db.mongo.repositories.ArtistRepository;
 import com.db.mongo.repositories.RelationshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,8 @@ public class RelationshipService {
 
     @Autowired
     RelationshipRepository relationshipRepository;
+    @Autowired
+    ArtistRepository artistRepository;
 
     /**
      * @param id id of the relationship
@@ -37,6 +42,7 @@ public class RelationshipService {
      * @return The Relationship that was added
      */
     public Relationship add(Relationship relationship) {
+
         return relationshipRepository.save(relationship);
     }
 

@@ -11,6 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Track extends Entity {
 
     public Track(){
-        super(EntityType.LABEL);
+        super(EntityType.TRACK);
     }
 }

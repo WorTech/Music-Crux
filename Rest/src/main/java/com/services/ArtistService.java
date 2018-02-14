@@ -48,6 +48,7 @@ public class ArtistService {
      * @return The Artist that was updated
      */
     public Artist update(String id, Artist artistUpdates) {
+        //User gets the whole entity, modifies that entity, and sends the whole entity back
         Artist artist = this.getArtist(id);
         artist = artistUpdates;
         return artist;

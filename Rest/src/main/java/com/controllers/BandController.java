@@ -22,16 +22,19 @@ public class BandController {
 
     @RequestMapping(method = RequestMethod.GET, params = {"name", "limit"})
     public Collection<Band> getBandsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
+
         return bandService.getBandsByName(name, limit);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Band add(@RequestBody Band band) {
+
         return bandService.add(band);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Band update(@PathVariable("id") String id, @RequestBody Band band) {
+
         return bandService.update(id, band);
     }
 
