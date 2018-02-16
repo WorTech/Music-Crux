@@ -27,12 +27,18 @@ public class CreateLabelDB implements CommandLineRunner{
     @Override
     public void run(String... arg0) throws Exception{
         try{
+            //Pass in XML as command line argument
+            //labels.xml
+            String labelXmlFileString = arg0[2].toString();
             // Initialize OpenNLP tokenizers and models
-            InputStream inputStreamTokenizer = new FileInputStream(arg0[1].toString());
+
+            //en-token.bin
+            InputStream inputStreamTokenizer = new FileInputStream(arg0[3].toString());
             TokenizerModel tokenModel = new TokenizerModel(inputStreamTokenizer);
             TokenizerME tokenizer = new TokenizerME(tokenModel);
 
-            InputStream inputStreamNameFinder = new FileInputStream(arg0[2].toString());
+            //en-ner-location.bin
+            InputStream inputStreamNameFinder = new FileInputStream(arg0[4].toString());
             TokenNameFinderModel model = new TokenNameFinderModel(inputStreamNameFinder);
             NameFinderME nameFinder = new NameFinderME(model);
 
@@ -40,7 +46,6 @@ public class CreateLabelDB implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
-            String labelXmlFileString = arg0[3].toString();
             XmlFileReader xmlFileReader = new XmlFileReader(labelXmlFileString);
 
             while (xmlFileReader.hasNext()) {
@@ -51,7 +56,7 @@ public class CreateLabelDB implements CommandLineRunner{
 
                 Label label = mapper.readValue(LabelJson.toString(), Label.class);
                 //System.out.println(label);
-                //If the contactinfo xml tag is not empty, extract the  location via OpenNLP
+                //If the contactinfo xml tag is not empty, try to extract the  location via OpenNLP
                 if(label.getContactinfo() != null) {
                     String XMLContactTag = label.getContactinfo();
                     String tokens[] = tokenizer.tokenize(XMLContactTag);

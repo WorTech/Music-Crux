@@ -3,6 +3,7 @@ package com.test.TestServices;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
+import com.models.Release;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
