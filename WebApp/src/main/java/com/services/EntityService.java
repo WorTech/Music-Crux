@@ -1,44 +1,40 @@
 package com.services;
 
-import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
 
 import com.models.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class EntityService {
 
 	private RestTemplate restTemplate = new RestTemplate();
-	// TODO: Update this function to reflect the changes to the Relationship models
+
 	/**
-	 * Creates a molecule from the provided labels.
-	 * The Molecule consists of the entities and relationships corresponding to the labels
-	 * //@param entities
-	 * @return Molecule
+	 * Returns a list of entities from the provided arguments.
+	 * This service method sends a request to the Music-Crux RESTful Service depending on the type (EntityType) passed in
+	 * A limit parameter may be passed in to limit the number of search results returned
+	 * @param type
+	 * @param name
+	 * @param limit
+	 * @return List<Entity>
 	 */
 
 	//Service makes the GET requests to Music-Crux RESTful API
-	public List<Entity> getEntitySearchResults(String name, List<String> types, int limit){
-
-		/* UNCOMMENT THIS BLOCK WHEN the MusicCrux RESTful Service is up and running. */
-//		Type parameter will be of enum EntityType -> {'ARTIST', 'BAND', 'LABEL', 'ALBUM', 'TRACK'}
-//		List<Entity> entities = restTemplate.getForObject("http://localhost:8080/MusicCrux/api/{types}/{name}/{limit}", List.class);
-		List<Entity> entities = new ArrayList<>();
-		System.out.println("Request made.");
-		Artist myArtist = restTemplate.getForObject("https://api.myjson.com/bins/1f1fld", Artist.class);
-		System.out.println(myArtist.toString());
-		entities.add(myArtist);
+	public List<Entity> getEntitySearchResults(String type, String name, int limit) {
+		//Type parameter will be one of -> {'Artist', 'Band', 'Label', 'Album', 'Track'}
+		String URL = "http://localhost:8081/" + type;
+		System.out.println("Request made to: " + URL);
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
+				.queryParam("name", name)
+				.queryParam("limit", limit);
+		UriComponents components = builder.build(true);
+		URI uri = components.toUri();
+		List<Entity> entities = restTemplate.getForObject(uri, List.class);
 		return entities;
-}
-
-// This is the old method for retrieving entity search results with EntityRepository.
-// Now, we are using REST calls to retrieve those entity search results versus directly touching EntityRepository.
-
-//	public List<EntityUI> getEntitySearchResults(String name, int limit){
-//		List<Entity> searchResults = new ArrayList<>();
-//		searchResults = entityRepository.findByLabelContainingIgnoreCase(name, new PageRequest(0,limit));
-//		return EntityUI.dbModelToUiModel(searchResults);
-//	}
+	}
 }
