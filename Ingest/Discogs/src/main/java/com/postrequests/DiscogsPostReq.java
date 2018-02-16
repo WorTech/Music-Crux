@@ -3,6 +3,7 @@ package com.postrequests;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
+import com.models.Release;
 import lombok.Data;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -83,19 +84,20 @@ public class DiscogsPostReq {
     }
 
 
-    public HttpStatus postAlbumEntity(Release release) {
+    public HttpStatus postReleaseEntity(Release release) {
 
         //Sets up the HTTP headers and content for the RestTemplate and the URI
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Release> albumEntity = new HttpEntity(release, headers);
+        HttpEntity<Release> releaseEntity = new HttpEntity(release, headers);
+
         URI = "http://localhost:8080/Release";
 
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
-            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, albumEntity, Release.class);
+            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, releaseEntity, Release.class);
             if (entityOut.getBody() != null) {
                 status = entityOut.getStatusCode();
             } else {
