@@ -1,7 +1,12 @@
 package com.services;
 
+import com.db.mongo.models.Artist;
 import com.db.mongo.models.Band;
+import com.db.mongo.models.Relationship;
+import com.db.mongo.models.RelationshipType;
+import com.db.mongo.repositories.ArtistRepository;
 import com.db.mongo.repositories.BandRepository;
+import com.db.mongo.repositories.RelationshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -11,10 +16,14 @@ import java.util.List;
 @Service
 public class BandService {
 
+    @Autowired
+    ArtistRepository artistRepository;
 
     @Autowired
     BandRepository bandRepository;
 
+    @Autowired
+    RelationshipRepository relationshipRepository;
     /**
      * @param id id of the Band
      * @return The Band matching the id
@@ -38,7 +47,22 @@ public class BandService {
      * @return The Band that was added
      */
     public Band add(Band band) {
-        //THIS IS STILL A TEST
+        //1. Use the band.members.id array to query artist's document
+        //2. Add their reference to a List<Artist> ids
+        for (int i = 0; i < band.members.id.size(); i++){
+            //System.out.println(band.members.id.get(i));
+            //Artist foundArtist = artistRepository.findById(band.members.id.get(i).toString());
+            //band.artists.add(foundArtist);
+
+            //Create a new relationship.
+            Relationship relationship = new Relationship();
+            relationship.setType(RelationshipType.MEMBERSHIP);
+            relationship.setEntityA(artistRepository.findById(band.members.id.get(i).toString()));
+            relationship.setEntityB(band);
+            relationshipRepository.save(relationship);
+        }
+        //Artist artist = artistRepository.findById(band.members[i])
+
         return bandRepository.save(band);
     }
 
