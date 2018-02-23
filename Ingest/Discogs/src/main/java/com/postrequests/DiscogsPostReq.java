@@ -47,26 +47,28 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
+        //System.out.println(status);
         return status;
     }
 
     public HttpStatus postBandEntity(Band band) {
-
         //Sets up the HTTP headers and content for the RestTemplate and the URI
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        System.out.println(band);
         HttpEntity<Band> bandEntity = new HttpEntity(band, headers);
         URI = "http://localhost:8081/band";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
-            ResponseEntity<Band> entityOut = restTemplate.postForEntity(URI, bandEntity, Band.class);
-            if (entityOut.getBody() != null) {
-                status = entityOut.getStatusCode();
-            } else {
-                status = entityOut.getStatusCode();
-            }
+            //ServiceRequest request = new ServiceRequest();
+            Band entityOut = restTemplate.postForObject(URI, bandEntity, Band.class);
+            //if (entityOut.getBody() != null) {
+            //    status = entityOut.getStatusCode();
+            //} else {
+            //    status = entityOut.getStatusCode();
+            //}
+            //System.out.println(entityOut);
 
         } catch (HttpClientErrorException e) {
             System.out.println("Error with client request.");
@@ -79,7 +81,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
+        //System.out.println(status);
         return status;
     }
 
@@ -115,7 +117,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
+        //System.out.println(status);
         return status;
     }
 
@@ -144,7 +146,7 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
+        //System.out.println(status);
         return status;
     }
 }

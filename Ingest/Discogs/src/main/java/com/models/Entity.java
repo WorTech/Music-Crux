@@ -13,6 +13,5 @@ public class Entity {
     @JsonProperty("name")
     private String name;
     @JsonProperty("members")
-    private Members members;
-
+    private Band.Members members;
 }

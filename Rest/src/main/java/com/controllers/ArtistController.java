@@ -28,7 +28,7 @@ public class ArtistController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Artist add(@RequestBody Artist artist) {
-
+        System.out.println(artist);
         return artistService.add(artist);
     }
 

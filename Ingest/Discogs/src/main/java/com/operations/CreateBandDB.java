@@ -14,7 +14,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(value=2)
+@Order(value=1)
 public class CreateBandDB implements CommandLineRunner{
     @Override
     public void run(String... arg0) throws Exception {
@@ -32,10 +32,6 @@ public class CreateBandDB implements CommandLineRunner{
                 JSONObject entityJson = xmlJsonObj.getJSONObject("artist");
 
                 if (mapper.readValue(entityJson.toString(), Entity.class).getMembers() != null) {
-//                    Artist artist = mapper.readValue(entityJson.toString(), Artist.class);
-//                    //Posts the Artist to the Music-Crux REST endpoint
-//                    DiscogsPostReq artistPost = new DiscogsPostReq();
-//                    artistPost.postArtistEntity(artist);
                     Band band = mapper.readValue(entityJson.toString(), Band.class);
                     //Posts the Bands to the Music-Crux REST endpoint
                     DiscogsPostReq bandPost = new DiscogsPostReq();

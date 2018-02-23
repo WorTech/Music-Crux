@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.services.BandService;
 import com.db.mongo.models.Band;
+import com.services.BandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +26,12 @@ public class BandController {
         return bandService.getBandsByName(name, limit);
     }
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
     public Band add(@RequestBody Band band) {
 
+        //System.out.println(band.getMembers().toString());
+        //Band newBand = new ObjectMapper().readValue(band, Band.class);
         return bandService.add(band);
     }
 
