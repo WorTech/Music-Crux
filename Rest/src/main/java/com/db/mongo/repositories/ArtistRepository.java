@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface ArtistRepository extends MongoRepository<Artist, String> {
-	
+
+	public Artist findById(String id);
 	public List<Artist> findByNameContaining(String name, Pageable pageable);
 }

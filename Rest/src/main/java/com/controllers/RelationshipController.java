@@ -1,5 +1,7 @@
 package com.controllers;
 
+import com.db.mongo.models.Artist;
+import com.db.mongo.repositories.ArtistRepository;
 import com.services.RelationshipService;
 import com.db.mongo.models.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,13 @@ public class RelationshipController {
 
     @Autowired
     RelationshipService relationshipService;
+    @Autowired
+    ArtistRepository artistRepository;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Relationship getRelationship(@PathVariable("id") String id) {
-        return relationshipService.getRelationship(id);
 
+        return relationshipService.getRelationship(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, params = {"types", "limit"})
@@ -29,11 +33,13 @@ public class RelationshipController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Relationship add(@RequestBody Relationship relationship) {
+
         return relationshipService.add(relationship);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Relationship update(@PathVariable("id") String id, @RequestBody Relationship relationship) {
+
         return relationshipService.update(id, relationship);
     }
 

@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.services.BandService;
 import com.db.mongo.models.Band;
+import com.services.BandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +22,20 @@ public class BandController {
 
     @RequestMapping(method = RequestMethod.GET, params = {"name", "limit"})
     public Collection<Band> getBandsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
+
         return bandService.getBandsByName(name, limit);
     }
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
     public Band add(@RequestBody Band band) {
+        //System.out.println(band);
         return bandService.add(band);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Band update(@PathVariable("id") String id, @RequestBody Band band) {
+
         return bandService.update(id, band);
     }
 

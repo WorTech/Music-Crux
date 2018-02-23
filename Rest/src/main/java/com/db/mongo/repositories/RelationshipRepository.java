@@ -10,9 +10,8 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface RelationshipRepository extends MongoRepository<Relationship, String>{
 	
-	public Relationship findByType(RelationshipType relationshipType);
+	public List<Relationship> findByType(RelationshipType relationshipType);
 	
 	@Query("{$or: [{'entityA' :{'$ref' : 'entity' , '$id' : ?0}}, {'entityB' :{'$ref' : 'entity' , '$id' : ?0}}] }")
 	public List<Relationship> findByEntity(String entityId);
-
 }
