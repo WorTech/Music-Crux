@@ -42,8 +42,7 @@ public class CreateAlbumDB implements CommandLineRunner {
                 //Posts the Release to the Music-Crux REST endpoint
                 DiscogsPostReq albumPost = new DiscogsPostReq();
                 albumPost.postAlbumEntity(album);
-                System.out.println(album);
-            }
+             }
         } catch (Exception e) {
             e.printStackTrace();
         }
