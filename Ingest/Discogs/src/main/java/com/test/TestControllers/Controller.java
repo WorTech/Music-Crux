@@ -37,15 +37,14 @@ public class Controller {
 //        return new ResponseEntity<Release>(release, status);
 //    }
 
-<<<<<<< HEAD
+
     @RequestMapping(value = "/Album", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Album> addAlbum(@RequestBody Album album){
         HttpStatus status = album == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
         service.entity(album);
         return new ResponseEntity<Album>(album, status);
     }
-=======
->>>>>>> 7bdc8d5bd17576b6d0221849b8b451bcfbdcdd87
+
 
   @RequestMapping(value = "/Label", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Label> addArtist(@RequestBody Label label) {

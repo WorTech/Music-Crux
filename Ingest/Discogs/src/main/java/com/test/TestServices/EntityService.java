@@ -25,19 +25,12 @@ public class EntityService {
     }
 
 
-<<<<<<< HEAD
     public ResponseEntity<Album> entity(Album album){
         //System.out.println("Release:");
 //        System.out.println(album.toString());
         return null;
     }
-=======
-//    public ResponseEntity<Release> entity(Release release){
-//        //System.out.println("Release:");
-//        System.out.println(release.toString());
-//        return null;
-//    }
->>>>>>> 7bdc8d5bd17576b6d0221849b8b451bcfbdcdd87
+
 
 
     public ResponseEntity<Label> entity(Label label){
