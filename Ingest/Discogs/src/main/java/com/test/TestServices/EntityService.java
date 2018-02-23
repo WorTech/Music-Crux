@@ -1,9 +1,10 @@
 package com.test.TestServices;
 
+import com.models.Album;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
-import com.models.Release;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,9 @@ public class EntityService {
     }
 
 
-    public ResponseEntity<Release> entity(Release release){
+    public ResponseEntity<Album> entity(Album album){
         //System.out.println("Release:");
-        System.out.println(release.toString());
+//        System.out.println(album.toString());
         return null;
     }
 

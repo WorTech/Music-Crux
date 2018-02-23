@@ -7,13 +7,11 @@ import java.util.List;
 
 @Data
 @ToString(callSuper=true, includeFieldNames=true)
-
 public class Album extends Entity {
 
 
     private String country;
     private String releaseDate;
-
     private List<Track> tracks;
     private List<Artist> contributors;
     private List<Label> labels;

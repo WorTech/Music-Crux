@@ -3,6 +3,7 @@ package com.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -12,52 +13,54 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.List;
 
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Release {
+@JsonSerialize
+public class Album {
 
     @JsonProperty("genres")
-    private Collection <Genre> genres;
+    private List <Genre> genres;
     @JsonProperty("identifiers")
     private Identifiers identifiers;
-    private String status;
     @JsonProperty("labels")
     private Labels labels;
     @JsonProperty("companies")
     private Companies companies;
     @JsonProperty("styles")
-    private Collection<Style> styles;
+    private List<Style> styles;
     private String country;
-    private String id;
+    @JsonProperty("id")
+    private String discogs_id;
+    @JsonProperty("released")
     private String released;
     @JsonProperty("artists")
     private Artists artists;
+    @JsonProperty("title")
     private String title;
-    private String master_id;
     @JsonProperty("extraartists")
     private ExtraArtists extraartists;
     @JsonProperty("tracklist")
     private TrackList tracklist;
-//    @JsonProperty("notes")
-//    private String notes;
+    @JsonProperty("notes")
+    private String notes;
 
-
+//Only Deserializing a single string into the array
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Style{
         @JsonProperty("style")
-        private String[] style;
+        private List <String> style;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Identifiers {
         @JsonProperty("identifier")
-        private Collection<Identifier> identifiers;
+        private List<Identifier> identifiers;
     }
 
     @Data
@@ -73,39 +76,28 @@ public class Release {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class TrackList{
         @JsonProperty("track")
-        private Collection<Track> track;
-    }
-
-    @Data
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Track {
-        @JsonProperty("position")
-        private String position;
-        @JsonProperty("title")
-        private String title;
-        @JsonProperty("duration")
-        private String duration;
-        @JsonProperty("extraartists")
-        private ExtraArtists extraartists;
+        private List<Track> track;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ExtraArtists{
         @JsonProperty("artist")
-        private Collection<Artist> artist;
+        private List<Artist> artist;
     }
 
+    //Error: Field Null in REST model
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonSerialize
     public static class Artists{
         @JsonProperty("artist")
-        private Collection<Artist> artists;
-
+        private List<Artist> artists;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonSerialize
     public static class Artist {
         @JsonProperty("id")
         private String id;
@@ -119,11 +111,12 @@ public class Release {
         @JsonProperty("tracks")
         private String tracks;
     }
+    //Error: Field Null in REST model
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Labels {
         @JsonProperty("label")
-        private Collection<Label> labels;
+        private List<Label> labels;
     }
 
     @Data
@@ -135,20 +128,23 @@ public class Release {
         private String id;
         @JsonProperty("name")
         private String name;
+        @JsonProperty("entity_type_name")
+        private String entityTypeName;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Genre {
         @JsonProperty("genre")
-        private String[] genre;
+        private List<String> genre;
     }
 
+    //Error: Field Null in REST model
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Companies {
         @JsonProperty("company")
-        private Collection<Company> companies;
+        private List<Company> companies;
     }
 
     @Data

@@ -1,9 +1,9 @@
 package com.postrequests;
 
+import com.models.Album;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
-import com.models.Release;
 import lombok.Data;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class DiscogsPostReq {
 
-    //    private EntityType type;
     private RestTemplate restTemplate = new RestTemplate();
     private String URI;
 
@@ -47,7 +46,6 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
         return status;
     }
 
@@ -79,31 +77,28 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
         return status;
     }
 
 
-    public HttpStatus postReleaseEntity(Release release) {
+    public void postAlbumEntity(Album album) {
 
         //Sets up the HTTP headers and content for the RestTemplate and the URI
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Release> releaseEntity = new HttpEntity(release, headers);
-
-        URI = "http://localhost:8080/Release";
-
-        HttpStatus status = HttpStatus.NO_CONTENT;
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        HttpEntity<Album> albumEntity = new HttpEntity(album, headers);
+        URI = "http://localhost:8081/Album";
+//        HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
-            ResponseEntity<Release> entityOut = restTemplate.postForEntity(URI, releaseEntity, Release.class);
-            if (entityOut.getBody() != null) {
-                status = entityOut.getStatusCode();
-            } else {
-                status = entityOut.getStatusCode();
-            }
-
+//            ResponseEntity<Album> entityOut = restTemplate.postForEntity(URI, albumEntity, Album.class);
+            Album entityOut = restTemplate.postForObject(URI, album, Album.class);
+//            if (entityOut.getBody() != null) {
+//                status = entityOut.getStatusCode();
+//            } else {
+//                status = entityOut.getStatusCode();
+//            }
+//
         } catch (HttpClientErrorException e) {
             System.out.println("Error with client request.");
             System.out.println(e.getMostSpecificCause());
@@ -116,8 +111,8 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
-        return status;
+
+//        return status;
     }
 
     public HttpStatus postLabelEntity(Label label) {
@@ -143,7 +138,6 @@ public class DiscogsPostReq {
             System.out.println(e.getResponseBodyAsString());
             e.printStackTrace();
         }
-        System.out.println(status);
         return status;
     }
 }

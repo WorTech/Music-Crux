@@ -1,14 +1,17 @@
 package com.controllers;
 
-import com.services.AlbumService;
 import com.db.mongo.models.Album;
+import com.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/album")
+@RequestMapping("/Album")
 public class AlbumController {
 
     @Autowired
@@ -30,14 +33,7 @@ public class AlbumController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Album add(@RequestBody Album album) {
-
-        /*List<String> genres = new ArrayList<>();
-        genres.add("Rap");
-        genres.add("Rock");
-        album = new Album();
-        album.setName("Black Eye Peas Greatest hits");
-        album.setGenres(genres);*/
+    public Album addAlbum(@RequestBody Album album) {
         return albumService.add(album);
     }
 

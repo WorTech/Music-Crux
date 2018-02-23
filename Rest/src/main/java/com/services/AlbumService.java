@@ -49,6 +49,7 @@ public class AlbumService {
      * @return The Album that was added
      */
     public Album add(Album album) {
+        System.out.println(album.getArtists());
         return albumRepository.save(album);
     }
 

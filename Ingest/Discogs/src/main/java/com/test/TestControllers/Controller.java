@@ -1,8 +1,8 @@
 package com.test.TestControllers;
+import com.models.Album;
 import com.models.Artist;
 import com.models.Band;
 import com.models.Label;
-import com.models.Release;
 import com.test.TestServices.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,11 +31,11 @@ public class Controller {
     }
 
 
-    @RequestMapping(value = "/Release", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ResponseEntity<Release> addRelease(@RequestBody Release release){
-        HttpStatus status = release == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
-        service.entity(release);
-        return new ResponseEntity<Release>(release, status);
+    @RequestMapping(value = "/Album", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<Album> addAlbum(@RequestBody Album album){
+        HttpStatus status = album == null ? HttpStatus.BAD_REQUEST : HttpStatus.ACCEPTED;
+        service.entity(album);
+        return new ResponseEntity<Album>(album, status);
     }
 
   @RequestMapping(value = "/Label", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
