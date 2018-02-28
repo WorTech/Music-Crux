@@ -5,11 +5,8 @@ import SelectField from 'material-ui/SelectField';
 import axios from 'axios';
 import { RaisedButton, MenuItem } from 'material-ui';
 
-
-//Example of queried GET request with params
-//http://localhost:8081/artist/?name=Alexi&limit=20
-
 const artistURL = "http://localhost:8081/artist/?name=";
+const URL = "http://localhost:8080/api/entity/";
 
 export default class Search extends React.Component {
     constructor(props){
@@ -20,28 +17,29 @@ export default class Search extends React.Component {
             dataSource: [],
             inputValue: '',
             value: 1,
-            currentFilter: '',
+            entitySearch: null,
         }
     }
 
+    
 
     getResults(){
-        var config = {
-            headers: {
-                'Content-Type':'application/json',
-                'Access-Control-Allow-Origin':'*',
-            }
-        }
+        const self = this;
+        const queryString = "?type=" + this.state.value + "&name="+this.state.inputValue+"&limit=10";
 
-        var searchQueryParams = {
-            params: {
-                name:'Alexi',
-                limit:10,
-            }            
-        }
+        // var config = {
+        //     headers: {
+        //         'Content-Type':'application/json',
+        //         'Access-Control-Allow-Origin':'*',
+        //     }
+        // }
 
+        var newURL = URL + queryString
 
-        axios.get(artistURL, searchQueryParams).then(function(response){
+        axios.get(newURL).then(function(response){
+            self.setState({
+                entitySearch:response.data
+            })
             console.log(response);
         }).catch(function(err){
             console.log(err);
@@ -63,14 +61,13 @@ export default class Search extends React.Component {
 
         //PROPER ENDPOINT
         //http://localhost:8080/api/entity/?type=artist&name=James&limit=5.
-        const URL = "http://localhost:8080/api/entity/"//artist    /?name=";
 
-        const queryString = "?type=" + this.state.value + "&name="+this.state.inputValue+"&limit=10"
+        const queryString = "?type=" + this.state.value + "&name="+this.state.inputValue+"&limit=10";
 
         const 
             self = this,
             url = URL + queryString;
-        console.log(url);
+        //console.log(url);
 
         if(this.state.inputValue !== ''){
             axios.get(url).then(function(response){
@@ -86,7 +83,7 @@ export default class Search extends React.Component {
         }
     }
 
-    handleChange = (event, index, value) => this.setState({value}, () => console.log(value));
+    handleChange = (event, index, value) => this.setState({value});
 
  render(){
      return(
@@ -116,7 +113,12 @@ export default class Search extends React.Component {
                 label="Search" 
                 onClick={this.getResults}
             />
+            <div>
+                {/* Display the queried entities. */}
+                {/* <p>{this.state.entitySearch}</p> */}
+            </div>
          </div>
+
     </MuiThemeProvider>
      )
  }   
