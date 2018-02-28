@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AutoComplete from 'material-ui/AutoComplete';
-import JSONP from 'jsonp';
+import SelectField from 'material-ui/SelectField';
 import axios from 'axios';
-import { RaisedButton } from 'material-ui';
+import { RaisedButton, MenuItem } from 'material-ui';
 
 
 //Example of queried GET request with params
 //http://localhost:8081/artist/?name=Alexi&limit=20
 
 const artistURL = "http://localhost:8081/artist/?name=";
-const allArtistsURL = "http://localhost:8081/artists"
 
 export default class Search extends React.Component {
     constructor(props){
@@ -20,6 +19,8 @@ export default class Search extends React.Component {
         this.state = {
             dataSource: [],
             inputValue: '',
+            value: 1,
+            currentFilter: '',
         }
     }
 
@@ -59,30 +60,53 @@ export default class Search extends React.Component {
     performSearch() {
         //Example of queried GET request with params
         //http://localhost:8081/artist/?name=Alexi&limit=20
-        
+
+        //PROPER ENDPOINT
+        //http://localhost:8080/api/entity/?type=artist&name=James&limit=5.
+        const URL = "http://localhost:8080/api/entity/"//artist    /?name=";
+
+        const queryString = "?type=" + this.state.value + "&name="+this.state.inputValue+"&limit=10"
+
         const 
             self = this,
-            url = artistURL + this.state.inputValue + "&limit=10";
+            url = URL + queryString;
         console.log(url);
+
         if(this.state.inputValue !== ''){
             axios.get(url).then(function(response){
-                console.log(response)
+                //console.log(response)
                 let retrieval;
                 retrieval = response.data.map(function(result){
                     //console.log("THIS IS A RESULT: " + result.name);
                     return result.name;
                 });
-                console.log("This is retrieval: " + retrieval);
+                //console.log("This is retrieval: " + retrieval);
                 self.setState({dataSource:retrieval})
             });
         }
     }
+
+    handleChange = (event, index, value) => this.setState({value}, () => console.log(value));
 
  render(){
      return(
     <MuiThemeProvider>
          <div>
              <h1> This is the Search component! </h1>
+             <div>
+             <SelectField
+                floatingLabelText="EntityType"
+                defaultValue="Check"
+                value={this.state.value}
+                onChange={this.handleChange}
+             >
+                 <MenuItem value={"artist"} primaryText="Artist" />
+                 <MenuItem value={"band"}   primaryText="Band" />
+                 <MenuItem value={"label"}  primaryText="Label" />
+                 <MenuItem value={"album"}  primaryText="Album" />
+                 <MenuItem value={"track"}  primaryText="Track" />
+             </SelectField>
+             </div>
              <AutoComplete 
                 hintText="(i.e. Search for an artist . . . )"
                 dataSource = {this.state.dataSource}
