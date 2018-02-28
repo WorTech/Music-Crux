@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/artist")
 public class ArtistController {
@@ -16,7 +18,6 @@ public class ArtistController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Artist getArtist(@PathVariable("id") String id) {
-
         return artistService.getArtist(id);
     }
 

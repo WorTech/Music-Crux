@@ -1,6 +1,5 @@
 package com.controllers;
 
-import com.db.mongo.models.Artist;
 import com.db.mongo.repositories.ArtistRepository;
 import com.services.RelationshipService;
 import com.db.mongo.models.Relationship;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/relationship")
 public class RelationshipController {

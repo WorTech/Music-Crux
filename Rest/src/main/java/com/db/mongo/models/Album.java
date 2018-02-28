@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Album extends Entity{
 
-
 	private String country;
 	private String releaseDate;
 
