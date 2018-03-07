@@ -12,6 +12,8 @@ public class Entity {
     // artist name, band name, etc
     private String name;
 
+    public Entity(){ }
+
     public Entity(EntityType entityType) {
         this.setType(entityType);
     }

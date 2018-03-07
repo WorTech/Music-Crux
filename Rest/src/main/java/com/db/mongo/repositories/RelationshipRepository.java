@@ -13,6 +13,6 @@ public interface RelationshipRepository extends MongoRepository<Relationship, St
 	
 	public List<Relationship> findByType(RelationshipType relationshipType);
 	
-	@Query("{$or: [{'entityA' :{'$ref' : 'entity' , '$id' : ?0}}, {'entityB' :{'$ref' : 'entity' , '$id' : ?0}}] }")
+	@Query("{$or: [{'entityA' :{'$ref' : 'artist' , '$id' : ?0}}, {'entityB' :{'$ref' : 'band' , '$id' : ?0}}] }")
 	public List<Relationship> findByEntity(String entityId);
 }
