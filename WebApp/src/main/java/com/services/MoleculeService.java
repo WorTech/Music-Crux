@@ -45,6 +45,7 @@ public class MoleculeService {
 
         Molecule molecule = new Molecule();
         System.out.println("1");
+        //We're using ParameterizedTypeReference here because we're using a Generic Type of List<Relationship>
         ResponseEntity<List<Relationship>> responseList = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Relationship>>() {});
         List<Relationship> list_relationships = responseList.getBody();
         System.out.println(list_relationships);

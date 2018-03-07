@@ -104,7 +104,6 @@ export default class Search extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <h1> This is the Search component! </h1>
           <div>
             <SelectField
               floatingLabelText="EntityType"

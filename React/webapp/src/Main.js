@@ -5,7 +5,7 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-          <h1>Welcome to React!</h1>
+          <h1>Welcome to MusicCrux!</h1>
           <Search />
       </div>
     );
