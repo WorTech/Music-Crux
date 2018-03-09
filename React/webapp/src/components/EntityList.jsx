@@ -1,17 +1,25 @@
 import React from "react";
-import Molecule from './Molecule';
+import Molecule from "./Molecule";
 import Card from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
 import axios from "axios";
-import Redirect from 'react-router-dom';
+import { Link } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
 
 //This component may want an onClick function for each element
 //When onClick is called, the molecule is generated for that clicked element
 //May want to use the 'Card' component from material-ui
+
+const history = createHistory({
+  forceRefresh: true
+});
+
 export default class EntityList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.handleGetMolecule = this.handleGetMolecule.bind(this);
+    this.handleMoleculeJSON = this.handleMoleculeJSON.bind(this);
   }
 
   componentWillReceieveProps() {}
@@ -22,13 +30,28 @@ export default class EntityList extends React.Component {
       .get("http://localhost:8080/api/molecule?focus=" + entityID)
       .then(function(response) {
         console.log(response.data);
-        self.setState({ moleculeJSON: response.data });
+        self.setState({ moleculeJSON: response.data }, () => {
+          console.log(self.state.moleculeJSON.entities);
+          console.log(self.state.moleculeJSON.relationships);
+          history.push({
+            pathname: "/molecule",
+            state: { molecule: self.state.moleculeJSON }
+          });
+        });
       })
       .catch(function(err) {
         console.log(err);
       });
     console.log("Clicked on entity: " + entityID);
-    
+  }
+
+  handleMoleculeJSON() {
+    const self = this;
+    if (self.state.moleculeJSON) {
+      return self.state.moleculeJSON;
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -40,11 +63,13 @@ export default class EntityList extends React.Component {
               <h3>
                 Id: {entity.id} Name: {entity.name}
               </h3>
+              {/* <Link to="/molecule" params={{test:"ok"}} */}
               <FlatButton
                 label="Build molecule"
                 primary={true}
                 onClick={() => this.handleGetMolecule(entity.id)}
               />
+              {/* </Link> */}
             </Card>
           </div>
         );
@@ -52,6 +77,7 @@ export default class EntityList extends React.Component {
       return (
         <div>
           {entityResults}
+
           {/* <Molecule molecule={this.state.moleculeJSON} /> */}
         </div>
       );

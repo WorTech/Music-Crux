@@ -46,37 +46,17 @@ public class Molecule {
     }
 
     public void addEntitiesFromRelationships() {
-//        ObjectMapper mapper = new ObjectMapper();
-//        TypeFactory typeFactory = mapper.getTypeFactory();
-//        String jsonArray = "";
-//
-//        CollectionType javaType = mapper.getTypeFactory()
-//                .constructCollectionType(List.class, Entity.class);
-//        List<Entity> moreEntities = new ArrayList<Entity>();
-//        try {
-//            moreEntities = mapper.readValue(jsonArray, javaType);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            jsonArray = mapper.writeValueAsString(this.relationships);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            List<Entity> someEntityList = mapper.readValue(jsonArray, typeFactory.constructCollectionType(List.class, Entity.class));
-//            System.out.println(someEntityList);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
-        for (int i = 0; i < this.relationships.size(); i++){
+    int i = 0;
+    while(i < this.relationships.size()){
+        //for (int i = 0; i < this.relationships.size(); i++){
             //EntityA is the searched document (doesn't change)
             //EntityB is the related document (changes)
-
             entities.add(this.relationships.get(i).getEntityB());
-            //System.out.println(relationships.get(i).getEntityB());
+            i++;
         }
+        //Add the focus itself to the list of entities.
+        entities.add(this.relationships.get(i-1).getEntityA());
     }
 
     public void addRelationship(Relationship relationship) {
