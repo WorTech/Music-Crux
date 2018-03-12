@@ -56,7 +56,8 @@ public class Molecule {
             i++;
         }
         //Add the focus itself to the list of entities.
-        entities.add(this.relationships.get(i-1).getEntityA());
+        if(this.relationships.size() > 0)
+            entities.add(this.relationships.get(i-1).getEntityA());
     }
 
     public void addRelationship(Relationship relationship) {
