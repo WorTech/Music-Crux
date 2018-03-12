@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  InteractiveForceGraph,
+  ForceGraphNode,
+  ForceGraphLink
+} from "react-vis-force";
 
 export default class Molecule extends React.Component {
   constructor(props) {
@@ -41,8 +46,26 @@ export default class Molecule extends React.Component {
 
       return (
         <div>
-          {entities}
-          {relationships}
+          <InteractiveForceGraph
+            simulationOptions={{ height: 500 , width: 500 }}
+            labelAttr="label"
+            onSelectNode={ (node) => console.log(node)}
+            highlightDependencies
+          >
+            <ForceGraphNode
+              node={{ id: "first-node", label: "First node" }}
+              fill="red"
+            />
+            <ForceGraphNode
+              node={{ id: "second-node", label: "Second node" }}
+              fill="blue"
+            />
+            <ForceGraphLink
+              link={{ source: "first-node", target: "second-node" }}
+            />
+          </InteractiveForceGraph>
+          {/* {entities} */}
+          {/* {relationships} */}
         </div>
       );
     } else return <h3>Need to query a focused entity first!</h3>;

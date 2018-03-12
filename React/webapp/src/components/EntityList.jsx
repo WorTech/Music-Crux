@@ -1,9 +1,9 @@
 import React from "react";
-import Molecule from "./Molecule";
+// import Molecule from "./Molecule";
 import Card from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
 
 //This component may want an onClick function for each element
@@ -33,6 +33,7 @@ export default class EntityList extends React.Component {
         self.setState({ moleculeJSON: response.data }, () => {
           console.log(self.state.moleculeJSON.entities);
           console.log(self.state.moleculeJSON.relationships);
+          //Redirect to the molecule component when user hits 'Build Molecule'
           history.push({
             pathname: "/molecule",
             state: { molecule: self.state.moleculeJSON }
