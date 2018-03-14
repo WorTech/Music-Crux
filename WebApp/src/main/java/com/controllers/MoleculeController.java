@@ -18,7 +18,8 @@ public class MoleculeController {
 
     @RequestMapping(value = "/molecule", method = RequestMethod.GET)
     public ResponseEntity<Molecule> getMolecule(@RequestParam("focus") String entityId, @RequestParam("type") EntityType entityType, @RequestParam("depth") int depth){
-        Molecule molecule = moleculeService.createMolecule(entityId, entityType, depth);
+//        Molecule molecule = moleculeService.createMolecule(entityId, entityType, depth);
+        Molecule molecule = moleculeService.createMoleculeFor(entityId, entityType, depth);
         return new ResponseEntity<Molecule>(molecule, HttpStatus.OK);
     }
 }
