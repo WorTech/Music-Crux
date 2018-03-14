@@ -3,6 +3,7 @@ package com.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.models.Entity;
+import com.models.EntityType;
 import com.models.Relationship;
 import com.models.Molecule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class MoleculeService {
-//
-//    @Autowired
-//    EntityRepository entityRepository;
-//
-//    @Autowired
-//    RelationshipRepository relationshipRepository;
 
     private RestTemplate restTemplate = new RestTemplate();
     private ObjectMapper mapper = new ObjectMapper();
@@ -33,7 +28,7 @@ public class MoleculeService {
      * @param entityId : id of the current entity being searched
      * @return         : list of relationships and entities related to the searched entity
      */
-    public Molecule createMolecule(String entityId){
+    public Molecule createMolecule(String entityId, EntityType entityType){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         String URL = "http://localhost:8081/relationship";
@@ -44,7 +39,6 @@ public class MoleculeService {
         //ParameterizedTypeReference<List<Relationship>> listOfRelationships = new ParameterizedTypeReference<List<Relationship>>() {};
 
         Molecule molecule = new Molecule();
-        System.out.println("1");
         //We're using ParameterizedTypeReference here because we're using a Generic Type of List<Relationship>
         ResponseEntity<List<Relationship>> responseList = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Relationship>>() {});
         List<Relationship> list_relationships = responseList.getBody();
@@ -52,10 +46,10 @@ public class MoleculeService {
 
         molecule.setRelationships(list_relationships);
         //System.out.println(molecule.getRelationships().get(0).getEntityB());
-        molecule.addEntitiesFromRelationships();
+
+        molecule.addEntitiesFromRelationships(entityType);
         return molecule;
     }
-
     /**
      * Returns a molecule for the specified @entityId .
      *

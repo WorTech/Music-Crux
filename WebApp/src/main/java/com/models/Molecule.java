@@ -45,21 +45,40 @@ public class Molecule {
         entities.add(entity);
     }
 
-    public void addEntitiesFromRelationships() {
-
-    int i = 0;
-    while(i < this.relationships.size()){
-        //for (int i = 0; i < this.relationships.size(); i++){
-            //EntityA is the searched document (doesn't change)
-            //EntityB is the related document (changes)
-            entities.add(this.relationships.get(i).getEntityB());
-            i++;
-        }
-        //Add the focus itself to the list of entities.
-        if(this.relationships.size() > 0)
-            entities.add(this.relationships.get(i-1).getEntityA());
+    /**
+     * This method checks whether the focus is an artist or band.
+     * @param
+     * @return
+     */
+    //Artists will always be EntityA in the Relationship
+    //Bands will always be EntityB in the Relationship
+    public Boolean checkType(){
+        return true;
     }
 
+    public void addEntitiesFromRelationships(EntityType entityType) {
+        if (entityType == EntityType.ARTIST) {
+            int i = 0;
+            while (i < this.relationships.size()) {
+                //for (int i = 0; i < this.relationships.size(); i++){
+                //EntityA is the searched document (doesn't change)
+                //EntityB is the related document (changes)
+                entities.add(this.relationships.get(i).getEntityB());
+                i++;
+            }
+            //Add the focus itself to the list of entities.
+            if (this.relationships.size() > 0)
+                entities.add(this.relationships.get(i - 1).getEntityA());
+        }
+        if (entityType == EntityType.BAND) {
+            int i = 0;
+            while(i < this.relationships.size()) {
+                //EntityA is going to be a member of the band.
+                entities.add(this.relationships.get(i).getEntityA());
+                i++;
+            }
+        }
+    }
     public void addRelationship(Relationship relationship) {
         relationships.add(relationship);
     }
