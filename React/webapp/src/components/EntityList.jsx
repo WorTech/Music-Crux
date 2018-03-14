@@ -27,7 +27,7 @@ export default class EntityList extends React.Component {
   handleGetMolecule(entityID, entityType) {
     const self = this;
     axios
-      .get("http://localhost:8080/api/molecule?focus=" + entityID + "&type=" + entityType + "&depth=5")
+      .get("http://localhost:8080/api/molecule?focus=" + entityID + "&type=" + entityType + "&depth=2")
       .then(function(response) {
         console.log(response.data);
         self.setState({ moleculeJSON: response.data }, () => {
