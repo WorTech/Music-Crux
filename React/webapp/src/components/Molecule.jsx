@@ -13,8 +13,8 @@ export default class Molecule extends React.Component {
 
   componentWillMount() {
     // console.log(this.props.location.state);
-    console.log(this.props.location.state.molecule.entities);
-    console.log(this.props.location.state.molecule.relationships);
+    // console.log(this.props.location.state.molecule.entities);
+    // console.log(this.props.location.state.molecule.relationships);
   }
 
   render() {
@@ -23,6 +23,8 @@ export default class Molecule extends React.Component {
     var focusEntity_id;
     console.log("Nodes: ");
     console.log(nodes);
+    console.log("Relationships: ");
+    console.log(links);
     if (this.props.location.state) {
       //Print entities
       let entities = this.props.location.state.molecule.entities.map(entity => {
@@ -65,29 +67,29 @@ export default class Molecule extends React.Component {
               }
             }}
             labelAttr="label"
+            showLabels
             onSelectNode={node => console.log(node)}
             highlightDependencies
             zoom
           >
             {/* Reverse the order of the array so our focus is at the beginning of the array */}
-            {nodes
-              .map(function(entity, index) {
-                // This can totally be written a lot neater. . .
-                var fill;
-                //Make the focused-entity a different color
-                if (index == 0) {
-                  focusEntity_id = entity.id;
-                  fill = "red";
-                } else {
-                  fill = "blue";
-                }
-                return (
-                  <ForceGraphNode
-                    node={{ id: entity.id, label: entity.name, radius: 10 }}
-                    fill={fill}
-                  />
-                );
-              })}
+            {nodes.map(function(entity, index) {
+              // This can totally be written a lot neater. . .
+              var fill;
+              //Make the focused-entity a different color
+              if (index == 0) {
+                focusEntity_id = entity.id;
+                fill = "red";
+              } else {
+                fill = "blue";
+              }
+              return (
+                <ForceGraphNode
+                  node={{ id: entity.id, label: entity.name, radius: 10 }}
+                  fill={fill}
+                />
+              );
+            })}
 
             {/* <ForceGraphLink link={{source: 2, target: 0}} /> */}
             {links.map(function(relationship, index) {
@@ -95,11 +97,10 @@ export default class Molecule extends React.Component {
               // console.log(relationship);
               var source;
               if (entities.length > 0) {
-                if(nodes[0].type == "BAND"){
+                if (nodes[0].type == "BAND") {
                   source = relationship.entityA.id;
-                }
-                else if(nodes[0].type == "ARTIST"){
-                  source = relationship.entityB.id
+                } else if (nodes[0].type == "ARTIST") {
+                  source = relationship.entityB.id;
                 }
                 return (
                   <ForceGraphLink
@@ -111,10 +112,6 @@ export default class Molecule extends React.Component {
                 );
               }
             })}
-
-            {/* <ForceGraphLink
-              link={{ source: "first-node", target: "second-node" }}
-            /> */}
           </InteractiveForceGraph>
           {/* {entities} */}
           {/* {relationships} */}

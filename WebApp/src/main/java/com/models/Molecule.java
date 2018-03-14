@@ -77,6 +77,9 @@ public class Molecule {
                 entities.add(this.relationships.get(i).getEntityA());
                 i++;
             }
+            if(this.relationships.size() > 0){
+                entities.add(this.relationships.get(i-1).getEntityB());
+            }
         }
     }
     public void addRelationship(Relationship relationship) {

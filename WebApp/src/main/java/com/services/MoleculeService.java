@@ -8,6 +8,7 @@ import com.models.Relationship;
 import com.models.Molecule;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,30 +27,57 @@ public class MoleculeService {
     /**
      *
      * @param entityId : id of the current entity being searched
+     * @param depth
      * @return         : list of relationships and entities related to the searched entity
      */
-    public Molecule createMolecule(String entityId, EntityType entityType){
+    public Molecule createMolecule(String entityId, EntityType entityType, int depth){
+
+        Molecule molecule = new Molecule();
+
+        //Get the relationships of the focused entity
+        List<Relationship> list_relationships = getRelationships(entityId);
+        System.out.println(list_relationships);
+        molecule.setRelationships(list_relationships);
+
+        //This method will populate a molecule to a depth of 1.
+        molecule.addEntitiesFromRelationships(entityType);
+        // Check if the user wants a depth greater than 1, and if the molecule has enough entities to go to a higher depth.
+        if(depth > 1 && molecule.getEntities().size() > 1){
+            // Go through each entity in the entities[] property.
+            int i = 0;
+            List<Entity> exists = new ArrayList<Entity>();
+            // exists is going to keep track of what entities have been retrieved already
+            exists = molecule.getEntities();
+//            while(i < depth)
+            //System.out.println(exists);
+
+
+        }
+        else{
+            System.out.println("Depth will default to 1.");
+        }
+        return molecule;
+    }
+
+    /**
+     *
+     * @param entityId the id of the entity whose relationships we want to query for
+     * @return a list of relationships for the entity that was passed in
+     */
+    public List<Relationship> getRelationships(String entityId){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         String URL = "http://localhost:8081/relationship";
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(URL)
                 .queryParam("id", entityId);
 
-        //HttpEntity<?> entity = new HttpEntity<>(headers);
-        //ParameterizedTypeReference<List<Relationship>> listOfRelationships = new ParameterizedTypeReference<List<Relationship>>() {};
-
-        Molecule molecule = new Molecule();
         //We're using ParameterizedTypeReference here because we're using a Generic Type of List<Relationship>
         ResponseEntity<List<Relationship>> responseList = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Relationship>>() {});
         List<Relationship> list_relationships = responseList.getBody();
-        System.out.println(list_relationships);
 
-        molecule.setRelationships(list_relationships);
-        //System.out.println(molecule.getRelationships().get(0).getEntityB());
-
-        molecule.addEntitiesFromRelationships(entityType);
-        return molecule;
+        return list_relationships;
     }
+
     /**
      * Returns a molecule for the specified @entityId .
      *
