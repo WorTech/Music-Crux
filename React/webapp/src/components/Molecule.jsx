@@ -18,9 +18,11 @@ export default class Molecule extends React.Component {
   }
 
   render() {
-    var nodes = this.props.location.state.molecule.entities;
+    var nodes = this.props.location.state.molecule.entities.slice(0).reverse();
     var links = this.props.location.state.molecule.relationships;
     var focusEntity_id;
+    console.log("Nodes: ");
+    console.log(nodes);
     if (this.props.location.state) {
       //Print entities
       let entities = this.props.location.state.molecule.entities.map(entity => {
@@ -50,48 +52,65 @@ export default class Molecule extends React.Component {
       return (
         <div>
           <InteractiveForceGraph
-            simulationOptions={
-              { 
-                height: 1000,
-                width: 1000, 
-                radiusMargin: 20,
-                strength: {
-                  /* 
+            simulationOptions={{
+              height: 1000,
+              width: 1000,
+              radiusMargin: 100,
+              strength: {
+                /* 
                     I think this property controls how far away
                     you want unconnected nodes to be from the molecule.
                   */
-                  charge: -500
-                } 
-              }}
+                charge: -500
+              }
+            }}
             labelAttr="label"
             onSelectNode={node => console.log(node)}
             highlightDependencies
             zoom
           >
-
             {/* Reverse the order of the array so our focus is at the beginning of the array */}
-            {nodes.slice(0).reverse().map(function(entity, index){
-              // This can totally be written a lot neater. . .
-              var fill;
-              //Make the focused-entity a different color
-              if(index == 0) {
-                focusEntity_id = entity.id;
-                fill = "red"
-              }
-              else{
-                fill = "blue"
-              }
-              return <ForceGraphNode node={{id:entity.id, label:entity.name, radius: 10}} fill={fill} />
-            })}
+            {nodes
+              .map(function(entity, index) {
+                // This can totally be written a lot neater. . .
+                var fill;
+                //Make the focused-entity a different color
+                if (index == 0) {
+                  focusEntity_id = entity.id;
+                  fill = "red";
+                } else {
+                  fill = "blue";
+                }
+                return (
+                  <ForceGraphNode
+                    node={{ id: entity.id, label: entity.name, radius: 10 }}
+                    fill={fill}
+                  />
+                );
+              })}
 
             {/* <ForceGraphLink link={{source: 2, target: 0}} /> */}
-            
-            {links.map(function(relationship, index){
+            {links.map(function(relationship, index) {
               // console.log("Relationship index: " + index);
               // console.log(relationship);
-              return <ForceGraphLink link={{source:relationship.entityB.id, target: focusEntity_id}} />
-            })} 
-           
+              var source;
+              if (entities.length > 0) {
+                if(nodes[0].type == "BAND"){
+                  source = relationship.entityA.id;
+                }
+                else if(nodes[0].type == "ARTIST"){
+                  source = relationship.entityB.id
+                }
+                return (
+                  <ForceGraphLink
+                    link={{
+                      source: source,
+                      target: focusEntity_id
+                    }}
+                  />
+                );
+              }
+            })}
 
             {/* <ForceGraphLink
               link={{ source: "first-node", target: "second-node" }}
