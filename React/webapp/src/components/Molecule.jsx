@@ -68,22 +68,12 @@ export default class Molecule extends React.Component {
             highlightDependencies
             zoom
           >
-            {/* <ForceGraphNode
-              node={{ id: "first-node", label: "First node" }}
-              fill="red"
-            />
-            <ForceGraphNode
-              node={{ id: "second-node", label: "Second node" }}
-              fill="blue"
-            /> */}
 
             {/* Reverse the order of the array so our focus is at the beginning of the array */}
             {nodes.slice(0).reverse().map(function(entity, index){
               // This can totally be written a lot neater. . .
-              // console.log("Entity index: " + index);
-              // console.log(entity);
               var fill;
-              //Make the focus-entity a different color
+              //Make the focused-entity a different color
               if(index == 0) {
                 focusEntity_id = entity.id;
                 fill = "red"

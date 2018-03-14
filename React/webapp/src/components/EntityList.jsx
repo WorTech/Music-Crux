@@ -24,10 +24,10 @@ export default class EntityList extends React.Component {
 
   componentWillReceieveProps() {}
 
-  handleGetMolecule(entityID) {
+  handleGetMolecule(entityID, entityType) {
     const self = this;
     axios
-      .get("http://localhost:8080/api/molecule?focus=" + entityID)
+      .get("http://localhost:8080/api/molecule?focus=" + entityID + "&type=" + entityType)
       .then(function(response) {
         console.log(response.data);
         self.setState({ moleculeJSON: response.data }, () => {
@@ -68,7 +68,7 @@ export default class EntityList extends React.Component {
               <FlatButton
                 label="Build molecule"
                 primary={true}
-                onClick={() => this.handleGetMolecule(entity.id)}
+                onClick={() => this.handleGetMolecule(entity.id, entity.type)}
               />
               {/* </Link> */}
             </Card>
