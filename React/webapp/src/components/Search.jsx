@@ -1,6 +1,7 @@
 import React from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AutoComplete from "material-ui/AutoComplete";
+import Card from "material-ui/Card";
 import SelectField from "material-ui/SelectField";
 import axios from "axios";
 import { RaisedButton, MenuItem } from "material-ui";
@@ -19,7 +20,11 @@ export default class Search extends React.Component {
       dataSource: [],
       inputValue: "",
       value: 1,
-      entitySearch: null
+      entitySearch: null,
+      cardStyle: {
+        width:"50%",
+        justifyContainer:"center",
+      }
     };
   }
 
@@ -78,7 +83,7 @@ export default class Search extends React.Component {
       this.state.value +
       "&name=" +
       this.state.inputValue +
-      "&limit=10";
+      "&limit=100";
 
     const self = this,
       url = URL + queryString;
@@ -103,7 +108,8 @@ export default class Search extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <div style={{display:"flex", justifyContent:"center", marginTop:"10%"}}>
+          <Card style={this.state.cardStyle}>
             <h1> Welcome to MusicCrux! </h1>
           <div>
             <SelectField
@@ -125,12 +131,14 @@ export default class Search extends React.Component {
             onUpdateInput={this.onUpdateInput}
           />
           <RaisedButton label="Search" onClick={this.getResults} />
+          </Card>
+          </div>
+
           <div>
             {/* Display the queried entities. */}
             {/* <p>{this.state.entitySearch}</p> */}
             <EntityList entities={this.state.entitySearch}/>
           </div>
-        </div>
       </MuiThemeProvider>
     );
   }
