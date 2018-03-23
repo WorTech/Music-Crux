@@ -32,7 +32,7 @@ public class EntityService {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
 				.queryParam("name", name)
 				.queryParam("limit", limit);
-		UriComponents components = builder.build(true);
+		UriComponents components = builder.build(false);
 		URI uri = components.toUri();
 		List<Entity> entities = restTemplate.getForObject(uri, List.class);
 		return entities;
