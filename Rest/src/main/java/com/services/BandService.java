@@ -7,6 +7,7 @@ import com.db.mongo.models.RelationshipType;
 import com.db.mongo.repositories.ArtistRepository;
 import com.db.mongo.repositories.BandRepository;
 import com.db.mongo.repositories.RelationshipRepository;
+import jdk.nashorn.internal.runtime.regexp.RegExp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,7 @@ public class BandService {
      * @param id id of the Band
      * @return The Band matching the id
      */
-    public Band getBand(String id) {
-        return bandRepository.findOne(id);
+    public Band getBand(String id) {return bandRepository.findOne(id);
     }
 
     /**
@@ -38,7 +38,6 @@ public class BandService {
      * @return bands matching the @name
      */
     public List<Band> getBandsByName(String name, int limit) {
-
         return bandRepository.findByNameContaining(name, new PageRequest(0, limit));
     }
 
