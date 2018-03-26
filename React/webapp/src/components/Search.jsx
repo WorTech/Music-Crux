@@ -126,6 +126,7 @@ export default class Search extends React.Component {
             </SelectField>
           </div>
           <AutoComplete
+            style={{paddingRight:"50px"}}
             hintText="(i.e. Search for an artist . . . )"
             dataSource={this.state.dataSource}
             onUpdateInput={this.onUpdateInput}

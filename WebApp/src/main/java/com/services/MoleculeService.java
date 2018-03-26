@@ -136,6 +136,7 @@ public class MoleculeService {
                     molecule.addEntity(relationship.getEntityA());
                     visited.add(relationship.getEntityA().getId());
                 } else {
+                    System.out.println(molecule);
                     populateMolecule(relationship.getEntityA().getId(), relationship.getEntityA().getType(), depth, visited, molecule);
                 }
             }
@@ -144,6 +145,7 @@ public class MoleculeService {
                     molecule.addEntity(relationship.getEntityB());
                     visited.add(relationship.getEntityB().getId());
                 } else {
+                    System.out.println(molecule);
                     populateMolecule(relationship.getEntityB().getId(), relationship.getEntityB().getType(), depth, visited, molecule);
                 }
             }

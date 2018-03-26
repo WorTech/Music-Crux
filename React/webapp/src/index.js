@@ -8,7 +8,7 @@ import Main from "./Main";
 import registerServiceWorker from "./registerServiceWorker";
 
 const App = () => (
-  <MuiThemeProvider muiTheme={darkBaseTheme}>
+  <MuiThemeProvider>
       <App />
   </MuiThemeProvider>
 );

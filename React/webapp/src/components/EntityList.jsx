@@ -2,6 +2,7 @@ import React from "react";
 // import Molecule from "./Molecule";
 import Card from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
+import Slider from 'material-ui/Slider';
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
@@ -20,6 +21,7 @@ export default class EntityList extends React.Component {
     this.state = {};
     this.handleGetMolecule = this.handleGetMolecule.bind(this);
     this.handleMoleculeJSON = this.handleMoleculeJSON.bind(this);
+    this.handleSliderValue = this.handleSliderValue.bind(this);
   }
 
   componentWillReceieveProps() {}
@@ -27,7 +29,7 @@ export default class EntityList extends React.Component {
   handleGetMolecule(entityID, entityType) {
     const self = this;
     axios
-      .get("http://localhost:8080/api/molecule?focus=" + entityID + "&type=" + entityType + "&depth=2")
+      .get("http://localhost:8080/api/molecule?focus=" + entityID + "&type=" + entityType + "&depth="+self.state.depth)
       .then(function(response) {
         console.log(response.data);
         self.setState({ moleculeJSON: response.data }, () => {
@@ -55,22 +57,29 @@ export default class EntityList extends React.Component {
     }
   }
 
+  handleSliderValue = (event, value) => {
+    // Value will be one of: { 0, 0.2, 0.4, 0.6, 0.8, 1}
+    // Multiply the value by 5 to get { 1, 2, 3, 4, 5}
+    value = value * 5;
+    this.setState({depth: value});
+  }
+
   render() {
     if (this.props.entities) {
       let entityResults = this.props.entities.map(entity => {
         return (
           <div>
-            <Card>
+            <Card style={{display:"flex", justifyContent:"center"}}>
               <h3>
                 Id: {entity.id} Name: {entity.name}
               </h3>
-              {/* <Link to="/molecule" params={{test:"ok"}} */}
               <FlatButton
                 label="Build molecule"
                 primary={true}
                 onClick={() => this.handleGetMolecule(entity.id, entity.type)}
               />
-              {/* </Link> */}
+              <p>Depth: {this.state.depth}</p>
+              <Slider style={{width:300}} step={0.2} value={0} onChange={this.handleSliderValue}/>
             </Card>
           </div>
         );

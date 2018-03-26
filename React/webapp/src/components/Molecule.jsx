@@ -18,7 +18,7 @@ export default class Molecule extends React.Component {
   }
 
   render() {
-    var nodes = this.props.location.state.molecule.entities.slice(0).reverse();
+    var nodes = this.props.location.state.molecule.entities.slice(0);
     var links = this.props.location.state.molecule.relationships;
     var focusEntity_id;
     console.log("Nodes: ");
@@ -52,25 +52,27 @@ export default class Molecule extends React.Component {
       );
 
       return (
-        <div>
+        <div style={{minHeight:"100%", minWidth:"100%"}}>
           <InteractiveForceGraph
             simulationOptions={{
-              height: 1000,
-              width: 1000,
+              // height: "auto",
+              // width: "auto",
               radiusMargin: 100,
               strength: {
                 /* 
                     I think this property controls how far away
                     you want unconnected nodes to be from the molecule.
                   */
-                charge: -500
-              }
+                charge: 50
+              },
+              animate: true
             }}
             labelAttr="label"
             showLabels
             onSelectNode={node => console.log(node)}
             highlightDependencies
             zoom
+            
           >
             {/* Reverse the order of the array so our focus is at the beginning of the array */}
             {nodes.map(function(entity, index) {
@@ -80,9 +82,14 @@ export default class Molecule extends React.Component {
               if (index == 0) {
                 focusEntity_id = entity.id;
                 fill = "red";
-              } else {
-                fill = "blue";
+              } 
+              else if(entity.type == "ARTIST"){
+                fill = "green"
               }
+              else if(entity.type == "BAND"){
+                fill = "blue"
+              }
+
               return (
                 <ForceGraphNode
                   node={{ id: entity.id, label: entity.name, radius: 10 }}
@@ -95,18 +102,21 @@ export default class Molecule extends React.Component {
             {links.map(function(relationship, index) {
               // console.log("Relationship index: " + index);
               // console.log(relationship);
-              var source;
+              var source, target;
               if (entities.length > 0) {
                 if (nodes[0].type == "BAND") {
                   source = relationship.entityA.id;
+                  target = relationship.entityB.id;
                 } else if (nodes[0].type == "ARTIST") {
                   source = relationship.entityB.id;
+                  target = relationship.entityA.id;
                 }
+                // target = relationship.
                 return (
                   <ForceGraphLink
                     link={{
                       source: source,
-                      target: focusEntity_id
+                      target: target
                     }}
                   />
                 );

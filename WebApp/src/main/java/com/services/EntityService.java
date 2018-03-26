@@ -37,8 +37,4 @@ public class EntityService {
 		List<Entity> entities = restTemplate.getForObject(uri, List.class);
 		return entities;
 	}
-
-
-
-
 }
