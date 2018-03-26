@@ -117,6 +117,10 @@ export default class Molecule extends React.Component {
                     link={{
                       source: source,
                       target: target,
+                      /* 
+                        The react-vis-force library is buggy and for some reason needs a value field
+                        here to highlight dependencies.
+                      */
                       value: 10
                     }}
                   />

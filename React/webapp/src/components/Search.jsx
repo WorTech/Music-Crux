@@ -130,6 +130,7 @@ export default class Search extends React.Component {
             hintText="(i.e. Search for an artist . . . )"
             dataSource={this.state.dataSource}
             onUpdateInput={this.onUpdateInput}
+            onNewRequest={this.getResults}
           />
           <RaisedButton label="Search" onClick={this.getResults} />
           </Card>
