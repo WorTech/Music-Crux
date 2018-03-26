@@ -116,7 +116,8 @@ export default class Molecule extends React.Component {
                   <ForceGraphLink
                     link={{
                       source: source,
-                      target: target
+                      target: target,
+                      value: 10
                     }}
                   />
                 );
