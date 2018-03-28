@@ -19,7 +19,6 @@ public class EntityBusinessModelConverter {
         if (entity == null) {
             return null;
         }
-
         return extractConcreteClassToBusinessModel(entity);
     }
 
@@ -40,7 +39,6 @@ public class EntityBusinessModelConverter {
                 return BandBusinessModelConverter.convertFromBusinessModel((common.models.Band) businessEntity);
             }
         }
-
         return null;
     }
 
@@ -61,7 +59,6 @@ public class EntityBusinessModelConverter {
                 return BandBusinessModelConverter.convertToBusinessModel((Band) entity);
             }
         }
-
         return null;
     }
 }

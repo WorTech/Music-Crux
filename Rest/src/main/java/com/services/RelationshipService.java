@@ -23,7 +23,6 @@ public class RelationshipService {
      * @return The Relationship matching the id
      */
     public Relationship getRelationship(String id) {
-
         return relationshipRepository.findOne(id);
     }
 
@@ -51,7 +50,6 @@ public class RelationshipService {
      * @return The Relationship that was added
      */
     public Relationship add(Relationship relationship) {
-
         return relationshipRepository.save(relationship);
     }
 

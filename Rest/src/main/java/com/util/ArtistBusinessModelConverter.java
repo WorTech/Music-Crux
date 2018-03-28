@@ -10,10 +10,9 @@ public class ArtistBusinessModelConverter {
         if (businessArtist == null) {
             return null;
         }
-
         Artist artist = new Artist();
+        artist.setId(businessArtist.getId());
         artist.setName(businessArtist.getName());
-
         return artist;
     }
 
@@ -21,10 +20,9 @@ public class ArtistBusinessModelConverter {
         if (artist == null) {
             return null;
         }
-
         common.models.Artist businessArtist = new common.models.Artist();
+        businessArtist.setId(artist.getId());
         businessArtist.setName(artist.getName());
-
         return businessArtist;
     }
 }
