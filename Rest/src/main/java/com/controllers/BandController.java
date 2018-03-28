@@ -16,14 +16,12 @@ public class BandController {
     BandService bandService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Band getBand(@PathVariable("id") String id) {
-
+    public common.models.Band getBand(@PathVariable("id") String id) {
         return bandService.getBand(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, params = {"name", "limit"})
-    public Collection<Band> getBandsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
-
+    public Collection<common.models.Band> getBandsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
         return bandService.getBandsByName(name, limit);
     }
 
@@ -35,8 +33,7 @@ public class BandController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Band update(@PathVariable("id") String id, @RequestBody Band band) {
-
+    public Band update(@PathVariable("id") String id, @RequestBody common.models.Band band) {
         return bandService.update(id, band);
     }
 

@@ -7,11 +7,13 @@ import com.db.mongo.models.RelationshipType;
 import com.db.mongo.repositories.ArtistRepository;
 import com.db.mongo.repositories.BandRepository;
 import com.db.mongo.repositories.RelationshipRepository;
+import com.util.BandBusinessModelConverter;
 import jdk.nashorn.internal.runtime.regexp.RegExp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +31,9 @@ public class BandService {
      * @param id id of the Band
      * @return The Band matching the id
      */
-    public Band getBand(String id) {return bandRepository.findOne(id);
+    public common.models.Band getBand(String id) {
+        common.models.Band band = BandBusinessModelConverter.convertToBusinessModel(bandRepository.findOne(id));
+        return band;
     }
 
     /**
@@ -37,11 +41,17 @@ public class BandService {
      * @param limit max number of bands to return
      * @return bands matching the @name
      */
-    public List<Band> getBandsByName(String name, int limit) {
-        return bandRepository.findByNameContaining(name, new PageRequest(0, limit));
+    public List<common.models.Band> getBandsByName(String name, int limit) {
+        List<Band> dbBand = bandRepository.
+                findByNameContaining(name, new PageRequest(0, limit));
+        List<common.models.Band> businessBand = new ArrayList<>();
+        for(Band band: dbBand){
+            businessBand.add(BandBusinessModelConverter.convertToBusinessModel(band));
+        }
+        return businessBand;
     }
 
-    /**
+    /**This is the internal add band, not for use by users
      * @param band Band to add in the database
      * @return The Band that was added
      */
@@ -49,10 +59,6 @@ public class BandService {
         //1. Use the band.members.id array to query artist's document
         //2. Add their reference to a List<Artist> ids
         for (int i = 0; i < band.members.id.size(); i++){
-            //System.out.println(band.members.id.get(i));
-            //Artist foundArtist = artistRepository.findById(band.members.id.get(i).toString());
-            //band.artists.add(foundArtist);
-
             //Create a new relationship.
             Relationship relationship = new Relationship();
             relationship.setType(RelationshipType.MEMBERSHIP);
@@ -60,18 +66,37 @@ public class BandService {
             relationship.setEntityB(band);
             relationshipRepository.save(relationship);
         }
-        //Artist artist = artistRepository.findById(band.members[i])
-
         return bandRepository.save(band);
+    }
+
+
+    /**This is the external add band, for use by users
+     * @param band Band to add in the database
+     * @return The Band that was added
+     */
+    public Band add(common.models.Band band) {
+        Band dbBand = new Band();
+        //1. Use the band.members.id array to query artist's document
+        //2. Add their reference to a List<Artist> ids
+        for (int i = 0; i < band.members.id.size(); i++){
+            BandBusinessModelConverter.convertFromBusinessModel(band);
+            //Create a new relationship.
+            Relationship relationship = new Relationship();
+            relationship.setType(RelationshipType.MEMBERSHIP);
+            relationship.setEntityA(artistRepository.findById(dbBand.members.id.get(i).toString()));
+            relationship.setEntityB(dbBand);
+            relationshipRepository.save(relationship);
+        }
+        return bandRepository.save(dbBand);
     }
 
     /**
      * @param id id of the Band
      * @return The Band that was updated
      */
-    public Band update(String id, Band bandUpdates) {
-        Band band = this.getBand(id);
+    public Band update(String id, common.models.Band bandUpdates) {
+        common.models.Band band = this.getBand(id);
         band = bandUpdates;
-        return bandRepository.save(band);
+        return bandRepository.save(BandBusinessModelConverter.convertFromBusinessModel(band));
     }
 }

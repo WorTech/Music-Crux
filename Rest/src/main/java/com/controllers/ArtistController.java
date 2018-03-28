@@ -16,13 +16,12 @@ public class ArtistController {
     ArtistService artistService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Artist getArtist(@PathVariable("id") String id) {
+    public common.models.Artist getArtist(@PathVariable("id") String id) {
         return artistService.getArtist(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, params = {"name", "limit"})
-    public Collection<Artist> getArtistsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
-
+    public Collection<common.models.Artist> getArtistsByName(@RequestParam("name") String name, @RequestParam("limit") int limit) {
         return artistService.getArtistsByName(name, limit);
     }
 
@@ -33,8 +32,7 @@ public class ArtistController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Artist update(@PathVariable("id") String id, @RequestBody Artist artist) {
-
+    public Artist update(@PathVariable("id") String id, @RequestBody common.models.Artist artist) {
         return artistService.update(id, artist);
     }
 }

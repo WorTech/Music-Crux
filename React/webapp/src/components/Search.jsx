@@ -131,7 +131,7 @@ export default class Search extends React.Component {
             dataSource={this.state.dataSource}
             onUpdateInput={this.onUpdateInput}
           />
-          <RaisedButton label="Search" onClick={this.getResults} />
+          <RaisedButton label="Search" onClick={this.getResults}/>
           </Card>
           </div>
 
