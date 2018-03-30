@@ -10,15 +10,26 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-
+/**
+ *This class acts as a controller on the Ingest side of the application
+ * Possible implementation of the Feign framework would be a viable replacement
+ * Each function is essentially the same
+ */
 @Data
 @Component
 public class DiscogsPostReq {
 
-    //    private EntityType type;
+
     private RestTemplate restTemplate = new RestTemplate();
     private String URI;
 
+    /**
+     * @param artist : Artist entity is passed into the function
+     * @implNote : Creates a ResponseEntity out of the artist, the artist model(class), URI
+     * and header information (Combined into a HttpEntity with the artist)
+     * @return   : Returns the response status received from the server after making the
+     * POST request to a specific URI in the REST layer of Music-Crux
+     */
     public HttpStatus postArtistEntity(Artist artist) {
 
         //Sets up the HTTP headers and content for the RestTemplate and the URI

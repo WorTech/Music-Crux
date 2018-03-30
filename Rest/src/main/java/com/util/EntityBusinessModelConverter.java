@@ -4,7 +4,9 @@ import com.db.mongo.models.Artist;
 import com.db.mongo.models.Band;
 import com.db.mongo.models.Entity;
 import lombok.experimental.UtilityClass;
-
+/**
+ * Utility class to convert between the business model and the DB model
+ */
 @UtilityClass
 public class EntityBusinessModelConverter {
 

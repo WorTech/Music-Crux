@@ -7,7 +7,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.StringWriter;
-
+/*
+   Creates an XMLFileReader to parse the XML using StAX, this is used in the creation of the DB
+ */
 public class XmlFileReader {
     private XMLStreamReader xmlStreamReader;
     private Transformer xmlTransformer;

@@ -2,7 +2,6 @@ package com.operations;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.models.Artist;
 import com.models.Band;
 import com.models.Entity;
 import com.postrequests.DiscogsPostReq;
@@ -12,7 +11,10 @@ import org.json.XML;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
+/**
+ * This class creates the Band DB, using the ObjectMapper to map the JSON objected
+ * extracted by the XmlFileReader from the band.xml (bandXmlFileString) file from Discogs data dump
+ */
 @Component
 @Order(value=2)
 public class CreateBandDB implements CommandLineRunner{

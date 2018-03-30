@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
+/**
+ * Repository to create queries to interact with a specific collection
+ */
 @CrossOrigin
 public interface AlbumRepository extends MongoRepository<Album, String>{
+    //allows the queries to be in upper and lower case
     @Query(value = "{'name': {$regex : ?0, $options: 'i'}}")
     public List<Album> findByNameContaining(String name, Pageable pageable);
     public List<Album> findByGenresContaining(List<String> genres, Pageable pageable);

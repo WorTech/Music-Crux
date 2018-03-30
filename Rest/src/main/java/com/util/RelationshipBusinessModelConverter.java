@@ -3,10 +3,16 @@ package com.util;
 import com.db.mongo.models.Entity;
 import com.db.mongo.models.Relationship;
 import lombok.experimental.UtilityClass;
-
+/**
+ * Utility class to convert between the business model and the DB model
+ */
 @UtilityClass
 public class RelationshipBusinessModelConverter {
-
+    /**
+     * @param businessRelationship: Inputs the business model
+     * @implNote : Checks for null entity, then converts the entity to the Db model
+     * @return relationship entity in DB model
+     */
     public Relationship convertFromBusinessModel(common.models.Relationship businessRelationship) {
         if (businessRelationship == null) {
             return null;
@@ -22,7 +28,11 @@ public class RelationshipBusinessModelConverter {
 
         return relationship;
     }
-
+    /**
+     * @param relationship: Inputs the business model
+     * @implNote : Checks for null entity, then converts the entity to the Db model
+     * @return relationship entity in DB model
+     */
     public common.models.Relationship convertToBusinessModel(Relationship relationship) {
 
         if (relationship == null) {

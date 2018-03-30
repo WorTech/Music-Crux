@@ -3,9 +3,17 @@ package com.util;
 import com.db.mongo.models.Band;
 import lombok.experimental.UtilityClass;
 
+/**
+ * Utility class to convert between the business model and the DB model
+ */
 @UtilityClass
 public class BandBusinessModelConverter {
 
+    /**
+     * @param businessBand: Inputs the business model
+     * @implNote : Checks for null entity, then converts the entity to the Db model
+     * @return band entity in DB model
+     */
     public Band convertFromBusinessModel(common.models.Band businessBand) {
         if (businessBand == null) {
             return null;
@@ -21,6 +29,12 @@ public class BandBusinessModelConverter {
         return band;
     }
 
+    /**
+     *
+     * @param band: Inputs the DB model for Band
+     * @implNote : Checks for null entity, then converts the entity to the Db model
+     * @return businessBand in business model
+     */
     public common.models.Band convertToBusinessModel(Band band) {
         if (band == null) {
             return null;

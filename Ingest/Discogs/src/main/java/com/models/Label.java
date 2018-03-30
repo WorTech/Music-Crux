@@ -6,7 +6,10 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * These are our DB models for internal storage use only
+ *
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Label {

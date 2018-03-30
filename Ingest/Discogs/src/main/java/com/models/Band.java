@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * These are our DB models for internal storage use only
+ * Each Artist entry in the artist.xml can either be an Artist or a Band
+ * The determination is made by checking to see if the Artist has a "Members" field
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonSerialize
