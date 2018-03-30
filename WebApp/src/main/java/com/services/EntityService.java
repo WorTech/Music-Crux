@@ -27,12 +27,12 @@ public class EntityService {
 	//Service makes the GET requests to Music-Crux RESTful API
 	public List<Entity> getEntitySearchResults(String type, String name, int limit) {
 		//Type parameter will be one of -> {'Artist', 'Band', 'Label', 'Album', 'Track'}
-		String URL = "http://localhost:8081/" + type;
+		String URL = "http://localhost:8081" + type;
 		System.out.println("Request made to: " + URL);
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
 				.queryParam("name", name)
 				.queryParam("limit", limit);
-		UriComponents components = builder.build(true);
+		UriComponents components = builder.build(false);
 		URI uri = components.toUri();
 		List<Entity> entities = restTemplate.getForObject(uri, List.class);
 		return entities;

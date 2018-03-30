@@ -28,6 +28,15 @@ public class RelationshipService {
     }
 
     /**
+     *
+     * @param id : id of the entity
+     * @return   : list of all relationships that entity is involved in
+     */
+    public List<Relationship> getEntityRelationships(String id){
+        System.out.println("Returning again");
+        return relationshipRepository.findByEntity(id);
+    }
+    /**
      * @param types
      * @param limit max number of relationships to return
      * @return labels matching the @types

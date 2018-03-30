@@ -25,14 +25,6 @@ public class Album extends Entity{
 	private Identifiers identifiers;
 	private Companies companies;
 	private List<Style> styles;
-	private String country;
-	private String released;
-	private Artists artists;
-	private String title;
-	private ExtraArtists extraartists;
-	private TrackList tracklist;
-    private String notes;
-
 
 	@Data
 	public static class Style{

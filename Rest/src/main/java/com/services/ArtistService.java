@@ -5,7 +5,6 @@ import com.db.mongo.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,6 +20,7 @@ public class ArtistService {
      * @return The Artist matching the id
      */
     public Artist getArtist(String id) {
+
         return artistRepository.findOne(id);
     }
 
@@ -48,6 +48,7 @@ public class ArtistService {
      * @return The Artist that was updated
      */
     public Artist update(String id, Artist artistUpdates) {
+
         //User gets the whole entity, modifies that entity, and sends the whole entity back
         Artist artist = this.getArtist(id);
         artist = artistUpdates;
