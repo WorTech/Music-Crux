@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  InteractiveForceGraph,
-  ForceGraphNode,
-  ForceGraphLink
-} from "react-vis-force";
+import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink } from "react-vis-force";
 
 export default class Molecule extends React.Component {
   constructor(props) {
@@ -55,8 +51,8 @@ export default class Molecule extends React.Component {
         <div style={{minHeight:"100%", minWidth:"100%"}}>
           <InteractiveForceGraph
             simulationOptions={{
-              // height: "auto",
-              // width: "auto",
+              height: "1200",
+              width: "1900",
               radiusMargin: 100,
               strength: {
                 /* 

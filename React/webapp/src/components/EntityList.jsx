@@ -60,7 +60,7 @@ export default class EntityList extends React.Component {
   handleSliderValue = (event, value) => {
     // Value will be one of: { 0, 0.2, 0.4, 0.6, 0.8, 1}
     // Multiply the value by 5 to get { 1, 2, 3, 4, 5}
-    value = value * 5;
+    value = value * 10;
     this.setState({depth: value});
   }
 
@@ -79,7 +79,7 @@ export default class EntityList extends React.Component {
                 onClick={() => this.handleGetMolecule(entity.id, entity.type)}
               />
               <p>Depth: {this.state.depth}</p>
-              <Slider style={{width:300}} step={0.2} value={0} onChange={this.handleSliderValue}/>
+              <Slider style={{width:300}} step={0.1} value={0} onChange={this.handleSliderValue}/>
             </Card>
           </div>
         );
