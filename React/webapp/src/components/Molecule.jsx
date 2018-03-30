@@ -55,8 +55,8 @@ export default class Molecule extends React.Component {
         <div style={{minHeight:"100%", minWidth:"100%"}}>
           <InteractiveForceGraph
             simulationOptions={{
-               // height: "100%",
-               // width: "100%",
+               height: "1280",
+               width: "1600",
               radiusMargin: 100,
               strength: {
                 /* 

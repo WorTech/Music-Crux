@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class Entity {
+    @Indexed
     @Id
     private String id;
     private EntityType type;

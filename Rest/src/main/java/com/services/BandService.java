@@ -59,6 +59,10 @@ public class BandService {
         //1. Use the band.members.id array to query artist's document
         //2. Add their reference to a List<Artist> ids
         for (int i = 0; i < band.members.id.size(); i++){
+          if(artistRepository.findById(String.valueOf(band.members.name.indexOf(i))) == null) {
+            Artist artist = artistRepository.findById(String.valueOf(band.members.name.indexOf(i)));
+            artistRepository.save(artist);
+          }
             //Create a new relationship.
             Relationship relationship = new Relationship();
             relationship.setType(RelationshipType.MEMBERSHIP);

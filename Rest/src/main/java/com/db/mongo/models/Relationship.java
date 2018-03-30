@@ -11,6 +11,7 @@ public class Relationship {
 	@Indexed
 	private RelationshipType type;
 
+	@Indexed
 	@DBRef
 	private Entity entityA, entityB;
 }

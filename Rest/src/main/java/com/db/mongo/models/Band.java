@@ -15,6 +15,7 @@ import java.util.List;
 @ToString(callSuper=true, includeFieldNames=true)
 public class Band extends Entity{
 
+	@Indexed
 	public Members members;
 
 	@Data

@@ -28,7 +28,7 @@ public class BandController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
     public Band add(@RequestBody Band band) {
-        //System.out.println(band);
+        System.out.println("2");
         return bandService.add(band);
     }
 

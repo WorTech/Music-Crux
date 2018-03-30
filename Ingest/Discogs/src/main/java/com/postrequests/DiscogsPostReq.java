@@ -55,14 +55,16 @@ public class DiscogsPostReq {
         //Sets up the HTTP headers and content for the RestTemplate and the URI
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        System.out.println(band);
+//        System.out.println(band);
         HttpEntity<Band> bandEntity = new HttpEntity(band, headers);
         URI = "http://localhost:8081/band";
         HttpStatus status = HttpStatus.NO_CONTENT;
 
         try {
-            //ServiceRequest request = new ServiceRequest();
+            //ServiceRequest request =
+            System.out.println("1");
             Band entityOut = restTemplate.postForObject(URI, bandEntity, Band.class);
+//            System.out.println(entityOut.toString());
             //if (entityOut.getBody() != null) {
             //    status = entityOut.getStatusCode();
             //} else {
